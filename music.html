@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Music playlists curated by Aryan Agarwala." />
+  <title>Music · Aryan Agarwala</title>
+  <style>
+    :root {
+      --ink: #111111;
+      --muted: #6c6c68;
+      --line: #e8e6e1;
+      --surface: #ffffff;
+      --maxw: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      font-family: Avenir, Avenir Next, Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.55;
+      background: #fafaf8;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .shell { width: min(calc(100% - 2.5rem), var(--maxw)); margin: 0 auto; }
+    header, footer { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    header { padding: 1.35rem 0; }
+    footer { padding: 1.5rem 0 3rem; color: var(--muted); font-size: .92rem; }
+    .back, .open-link {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: .6rem .9rem;
+      background: var(--surface);
+    }
+    .back:hover, .open-link:hover { border-color: #cfcac0; }
+    main { padding: 4.5rem 0 5rem; }
+    h1 { margin: 0; font-size: clamp(3.5rem, 10vw, 7rem); letter-spacing: -.075em; line-height: .9; font-weight: 550; }
+    .intro { max-width: 39rem; margin: 1.25rem 0 4.25rem; color: var(--muted); font-size: 1.08rem; }
+    .playlist { padding: 2rem 0; border-top: 1px solid var(--line); }
+    .playlist-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 1rem; }
+    h2 { margin: 0; font-size: clamp(1.6rem, 4vw, 2.4rem); letter-spacing: -.04em; font-weight: 500; }
+    .player-frame { position: relative; min-height: 520px; overflow: hidden; border: 1px solid var(--line); border-radius: 1rem; background: var(--surface); }
+    .loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); pointer-events: none; }
+    iframe { position: relative; z-index: 1; display: block; width: 100%; height: 520px; border: 0; background: transparent; }
+    @media (max-width: 640px) {
+      .shell { width: min(calc(100% - 1.4rem), var(--maxw)); }
+      header, footer, .playlist-head { align-items: flex-start; flex-direction: column; }
+      main { padding-top: 3rem; }
+      .intro { margin-bottom: 3rem; }
+      .player-frame, iframe { min-height: 490px; height: 490px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <header>
+      <a class="back" href="index.html#hobbies">← Back</a>
+    </header>
+
+    <main>
+      <h1>Music</h1>
+      <p class="intro">Here are three playlists that do a good job of summarising the music that I listen to.</p>
+
+      <section class="playlist">
+        <div class="playlist-head">
+          <h2>Heavy Rotation</h2>
+          <a class="open-link" href="https://music.apple.com/de/playlist/heavy-rotation/pl.pm-d5779e520ff52d7f27baa09ac519ba18?l=en" target="_blank" rel="noreferrer">Open in Apple Music ↗</a>
+        </div>
+        <div class="player-frame">
+          <div class="loading" aria-live="polite">Loading</div>
+          <iframe title="Heavy Rotation on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="eager" src="https://embed.music.apple.com/de/playlist/heavy-rotation/pl.pm-d5779e520ff52d7f27baa09ac519ba18?l=en-GB"></iframe>
+        </div>
+      </section>
+
+      <section class="playlist">
+        <div class="playlist-head">
+          <h2>Your Essentials</h2>
+          <a class="open-link" href="https://music.apple.com/de/playlist/your-essentials/pl.pm-d5779e520ff52d7feeb827d07e2d093b?l=en" target="_blank" rel="noreferrer">Open in Apple Music ↗</a>
+        </div>
+        <div class="player-frame">
+          <div class="loading" aria-live="polite">Loading</div>
+          <iframe title="Your Essentials on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="lazy" src="https://embed.music.apple.com/de/playlist/your-essentials/pl.pm-d5779e520ff52d7feeb827d07e2d093b?l=en-GB"></iframe>
+        </div>
+      </section>
+
+      <section class="playlist">
+        <div class="playlist-head">
+          <h2>Replay All Time</h2>
+          <a class="open-link" href="https://music.apple.com/de/playlist/replay-all-time/pl.rp-OBC567B1WY?l=en" target="_blank" rel="noreferrer">Open in Apple Music ↗</a>
+        </div>
+        <div class="player-frame">
+          <div class="loading" aria-live="polite">Loading</div>
+          <iframe title="Replay All Time on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="lazy" src="https://embed.music.apple.com/de/playlist/replay-all-time/pl.rp-OBC567B1WY?l=en-GB"></iframe>
+        </div>
+      </section>
+    </main>
+
+    <footer><a href="index.html">Aryan Agarwala</a></footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aryan Agarwala</title>
+  <meta name="description" content="Personal website for Aryan Agarwala, Ph.D. student in Computer Science at the Max Planck Institute for Informatics." />
+  <style>
+    :root {
+      --bg: #fafaf8;
+      --surface: #ffffff;
+      --text: #111111;
+      --muted: #6c6c68;
+      --line: #e8e6e1;
+      --accent: #1f3a5f;
+      --maxw: 1040px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Avenir, Avenir Next, Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--accent);
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(calc(100% - 2.5rem), var(--maxw));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(250, 250, 248, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      min-height: 72px;
+    }
+
+    .brand {
+      font-size: 0.98rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 4.5rem 0 3rem;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .portrait {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      padding: 0.8rem;
+    }
+
+    .portrait img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      filter: saturate(0.96) contrast(1.02);
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.7rem, 6vw, 5.2rem);
+      line-height: 0.96;
+      font-weight: 500;
+      letter-spacing: -0.05em;
+    }
+
+    .lead {
+      margin: 1.4rem 0 0;
+      max-width: 42rem;
+      font-size: 1.12rem;
+      color: #1f1f1d;
+    }
+
+    .hero-meta {
+      margin-top: 2rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .meta-block {
+      min-height: 72px;
+    }
+
+    .meta-label {
+      display: block;
+      margin-bottom: 0.2rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .meta-value {
+      font-size: 1rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-top: 1.75rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.1rem;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .button:hover {
+      border-color: #cfcac0;
+      transform: translateY(-1px);
+    }
+
+    .button.primary {
+      border-color: var(--text);
+    }
+
+    section {
+      padding: 2.75rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    .section-label {
+      font-size: 0.82rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 0.15rem;
+    }
+
+    h2 {
+      margin: 0 0 1rem;
+      font-size: 1.6rem;
+      font-weight: 500;
+      letter-spacing: -0.03em;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+    }
+
+    .list, .publications {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li,
+    .publications li,
+    .contact-list li {
+      padding: 0.95rem 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .publications li:first-child,
+    .list li:first-child,
+    .contact-list li:first-child {
+      border-top: 1px solid var(--line);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
+
+    .tag {
+      border: 1px solid var(--line);
+      padding: 0.45rem 0.75rem;
+      font-size: 0.92rem;
+      background: var(--surface);
+    }
+
+    .pub-venue,
+    .item-date {
+      display: block;
+      margin-bottom: 0.25rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .pub-title,
+    .item-title {
+      font-size: 1.04rem;
+    }
+
+    .pub-authors,
+    .item-sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 0.2rem;
+    }
+
+
+    .publications-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.75rem 1.5rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .publications-head h2 {
+      margin-bottom: 0;
+    }
+
+    .publications-source {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .publications-source a {
+      text-decoration: underline;
+      text-decoration-color: var(--line);
+      text-underline-offset: 0.2em;
+    }
+
+    .publication-status {
+      min-height: 1.5rem;
+      margin: 0 0 0.5rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .pub-title a {
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: 0.18em;
+      transition: text-decoration-color 0.2s ease;
+    }
+
+    .pub-title a:hover {
+      text-decoration-color: currentColor;
+    }
+
+    .publication-error {
+      color: var(--muted);
+    }
+
+    .pub-versions {
+      display: grid;
+      gap: 0.35rem;
+      margin-top: 0.55rem;
+    }
+
+    .pub-version {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.35rem 0.55rem;
+      font-size: 0.9rem;
+    }
+
+    .pub-version-label {
+      color: var(--muted);
+      min-width: 7.5rem;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.65rem;
+    }
+
+    .pub-links a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: var(--line);
+      text-underline-offset: 0.18em;
+    }
+
+    .pub-links a:hover {
+      text-decoration-color: currentColor;
+    }
+
+    .hobbies {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .hobby {
+      display: block;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .hobby:hover {
+      color: inherit;
+      border-color: #cfcac0;
+      transform: translateY(-2px);
+    }
+
+    .hobby img {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+    }
+
+    .hobby-copy {
+      padding: 1rem;
+    }
+
+    .contact-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    details {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 0.9rem 0;
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .teaching-list {
+      margin: 0.8rem 0 0;
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+
+    .teaching-list li { padding: 0.2rem 0; }
+
+    .footer {
+      padding: 1.5rem 0 3rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid,
+      .section-grid,
+      .split,
+      .hobbies {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-meta {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      nav,
+      .footer-wrap {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding-top: 3rem;
+      }
+
+      .container {
+        width: min(calc(100% - 1.5rem), var(--maxw));
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top">Aryan Agarwala</a>
+        <div class="nav-links">
+          <a href="#research">Research</a>
+          <a href="#publications">Publications</a>
+          <a href="#education">Education</a>
+          <a href="#teaching">Teaching</a>
+          <a href="#hobbies">Hobbies</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="portrait">
+          <img src="https://www.mpi-inf.mpg.de/fileadmin/inf/d1/profile_pictures/aryanagarwala.jpg" alt="Portrait of Aryan Agarwala" />
+        </div>
+        <div>
+          <p class="eyebrow">Algorithms and Complexity · Saarbrucken</p>
+          <h1>Aryan Agarwala</h1>
+          <p class="lead">
+            Ph.D. student in Computer Science at the Max Planck Institute for Informatics, advised by
+            <a href="https://www.mpi-inf.mpg.de/departments/algorithms-complexity/people/current-members/danupon-na-nongkai" target="_blank" rel="noreferrer">Prof. Danupon Nanongkai</a>.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" id="contact-link" href="#contact">Contact</a>
+            <a class="button" href="https://www.mpi-inf.mpg.de/departments/algorithms-complexity/people/current-members/aryan-agarwala" target="_blank" rel="noreferrer">MPI profile</a>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-block">
+              <span class="meta-label">Affiliation</span>
+              <div class="meta-value">Max Planck Institute for Informatics</div>
+            </div>
+            <div class="meta-block">
+              <span class="meta-label">Office</span>
+              <div class="meta-value">E1 4 · 329</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="container section-grid">
+        <div class="section-label">Research</div>
+        <div>
+          <h2>Algorithms and complexity</h2>
+          <div class="tag-row">
+            <span class="tag">Graph Algorithms</span>
+            <span class="tag">Isolation Lemma</span>
+            <span class="tag">Pseudorandomness</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="publications">
+      <div class="container section-grid">
+        <div class="section-label">Publications</div>
+        <div>
+          <div class="publications-head">
+            <h2>Publications</h2>
+          </div>
+          <p class="publication-status" id="dblp-status" aria-live="polite">Loading publications…</p>
+          <ul class="publications" id="dblp-publications" aria-busy="true">
+</ul>
+          <noscript><p class="publication-error"><a href="https://dblp.org/pid/395/6483">View publications on dblp</a></p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container section-grid">
+        <div class="section-label">Education</div>
+        <div>
+          <h2>Academic path</h2>
+          <ul class="list">
+            <li>
+              <span class="item-date">September 2023 - present</span>
+              <div class="item-title">Ph.D. student in Computer Science</div>
+              <div class="item-sub">Saarland Informatics Campus and Max Planck Institute for Informatics</div>
+            </li>
+            <li>
+              <span class="item-date">December 2020 - July 2023</span>
+              <div class="item-title">Bachelor in Mathematics and Computer Science</div>
+              <div class="item-sub">Chennai Mathematical Institute</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="teaching">
+      <div class="container section-grid">
+        <div class="section-label">Teaching</div>
+        <div>
+          <details>
+            <summary>Teaching assistant at Chennai Mathematical Institute (2021–2023)</summary>
+            <ul class="teaching-list">
+              <li>Introduction to Programming · Sep–Dec 2021</li>
+              <li>Analysis 1 · Sep–Dec 2021</li>
+              <li>Advanced Programming · Jan–Apr 2022 and 2023</li>
+              <li>Discrete Mathematics · Jan–Apr 2022</li>
+              <li>Design and Analysis of Algorithms · Aug–Nov 2022</li>
+              <li>Programming Language Concepts · Jan–Apr 2023</li>
+            </ul>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="hobbies">
+      <div class="container section-grid">
+        <div class="section-label">Hobbies</div>
+        <div>
+          <h2>Outside research</h2>
+          <div class="hobbies">
+            <a class="hobby" href="music.html" aria-label="Explore my music">
+              <img src="https://www.mpi-inf.mpg.de/fileadmin/_processed_/2/6/csm_guitar_b7409ccdd4.jpeg" alt="Guitar" />
+              <div class="hobby-copy">
+                <div class="item-title">Music ↗</div>
+              </div>
+            </a>
+            <article class="hobby">
+              <img src="https://www.mpi-inf.mpg.de/fileadmin/_processed_/a/1/csm_IMG_2924_ab317ff623.jpg" alt="Football at Old Trafford" />
+              <div class="hobby-copy">
+                <div class="item-title">Football</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container section-grid">
+        <div class="section-label">Contact</div>
+        <div>
+          <h2>Get in touch</h2>
+          <ul class="contact-list">
+            <li><span class="item-title">Phone</span><div class="item-sub"><a href="tel:+4968193251129">+49 681 9325 1129</a></div></li>
+            <li><span class="item-title">Fax</span><div class="item-sub">+49 681 9325 9199</div></li>
+            <li>
+              <span class="item-title">Email</span>
+              <div class="item-sub"><a id="email-link" href="#contact"></a></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-wrap">
+      <a href="#top">Back to top</a>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const email = ['aryan', 'agarwalas dot in'].join(' at ');
+      const emailLink = document.getElementById('email-link');
+      const contactLink = document.getElementById('contact-link');
+      if (emailLink) {
+        emailLink.href = 'mailto:' + email;
+        emailLink.textContent = email;
+      }
+      if (contactLink) contactLink.href = 'mailto:' + email;
+      const list = document.getElementById('dblp-publications');
+      const status = document.getElementById('dblp-status');
+      if (!list || !status) return;
+
+      const profileUrl = 'https://dblp.org/pid/395/6483';
+      const query = 'author:Aryan_Agarwala:';
+      const callbackName = '__aryanDblp_' + Date.now().toString(36);
+      const endpoint = 'https://dblp.org/search/publ/api' +
+        '?q=' + encodeURIComponent(query) +
+        '&format=jsonp&h=1000&c=0&callback=' + encodeURIComponent(callbackName);
+      let completed = false;
+      let requestScript;
+
+      function cleanText(value) {
+        if (value == null) return '';
+        const parser = new DOMParser();
+        const doc = parser.parseFromString('<div>' + String(value) + '</div>', 'text/html');
+        return (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
+      }
+
+      function asArray(value) {
+        if (value == null) return [];
+        return Array.isArray(value) ? value : [value];
+      }
+
+      function objectText(value) {
+        if (typeof value === 'string') return cleanText(value);
+        if (!value || typeof value !== 'object') return '';
+        return cleanText(value.text || value.url || value.value || value.href || '');
+      }
+
+      function cleanAuthorName(name) {
+        return cleanText(name)
+          // dblp appends a four-digit disambiguation suffix to homonymous authors.
+          .replace(/\s+\d{4}$/u, '')
+          .trim();
+      }
+
+      function authorName(author) {
+        if (typeof author === 'string') return cleanAuthorName(author);
+        if (!author || typeof author !== 'object') return '';
+        return cleanAuthorName(author.text || author.name || author.value || '');
+      }
+
+      function authorsFor(record) {
+        return asArray(record.authors && record.authors.author)
+          .map(authorName)
+          .filter(Boolean);
+      }
+
+      function normalizeTitle(value) {
+        return cleanText(value)
+          .replace(/\.$/, '')
+          .normalize('NFKD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+          .replace(/\b(?:extended|full|conference|journal|preliminary)\s+version\b/g, ' ')
+          .replace(/\bextended\s+abstract\b/g, ' ')
+          .replace(/&/g, ' and ')
+          .replace(/[^a-z0-9]+/g, ' ')
+          .replace(/\s+/g, ' ')
+          .trim();
+      }
+
+      function tokenSet(title) {
+        return new Set(normalizeTitle(title).split(' ').filter(Boolean));
+      }
+
+      function jaccard(left, right) {
+        if (!left.size || !right.size) return 0;
+        let intersection = 0;
+        left.forEach(function (token) {
+          if (right.has(token)) intersection += 1;
+        });
+        return intersection / (left.size + right.size - intersection);
+      }
+
+      function normalizedAuthorSet(record) {
+        return new Set(authorsFor(record).map(function (name) {
+          return name
+            .normalize('NFKD')
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .replace(/[^a-z0-9]+/g, ' ')
+            .trim();
+        }).filter(Boolean));
+      }
+
+      function overlapCoefficient(left, right) {
+        if (!left.size || !right.size) return 0;
+        let intersection = 0;
+        left.forEach(function (value) {
+          if (right.has(value)) intersection += 1;
+        });
+        return intersection / Math.min(left.size, right.size);
+      }
+
+      function samePaper(left, right) {
+        const leftTitle = normalizeTitle(left.title);
+        const rightTitle = normalizeTitle(right.title);
+        if (!leftTitle || !rightTitle) return false;
+        if (leftTitle === rightTitle) return true;
+
+        const leftTokens = tokenSet(left.title);
+        const rightTokens = tokenSet(right.title);
+        if (Math.min(leftTokens.size, rightTokens.size) < 5) return false;
+
+        const titleSimilarity = jaccard(leftTokens, rightTokens);
+        const authorSimilarity = overlapCoefficient(
+          normalizedAuthorSet(left),
+          normalizedAuthorSet(right)
+        );
+        const leftYear = Number(left.year || 0);
+        const rightYear = Number(right.year || 0);
+        const closeInTime = !leftYear || !rightYear || Math.abs(leftYear - rightYear) <= 3;
+        const containment = leftTitle.includes(rightTitle) || rightTitle.includes(leftTitle);
+        const lengthRatio = Math.min(leftTitle.length, rightTitle.length) /
+          Math.max(leftTitle.length, rightTitle.length);
+
+        return closeInTime && authorSimilarity >= 0.8 && (
+          titleSimilarity >= 0.88 ||
+          (containment && lengthRatio >= 0.82)
+        );
+      }
+
+      function isPreprint(record) {
+        const venue = cleanText(record.venue).toLowerCase();
+        const type = cleanText(record.type).toLowerCase();
+        const urls = asArray(record.ee).map(objectText).join(' ').toLowerCase();
+        return venue === 'corr' || type.includes('informal') || urls.includes('arxiv');
+      }
+
+      function recordPriority(record) {
+        let score = 0;
+        if (!isPreprint(record)) score += 100;
+        if (cleanText(record.venue)) score += 20;
+        if (asArray(record.ee).length) score += 10;
+        score += Number(record.year || 0) / 10000;
+        return score;
+      }
+
+      function groupRecords(records) {
+        const groups = [];
+
+        records.forEach(function (record) {
+          let matchingGroup = null;
+          for (let index = 0; index < groups.length; index += 1) {
+            if (groups[index].records.some(function (candidate) {
+              return samePaper(record, candidate);
+            })) {
+              matchingGroup = groups[index];
+              break;
+            }
+          }
+
+          if (matchingGroup) {
+            matchingGroup.records.push(record);
+          } else {
+            groups.push({ records: [record] });
+          }
+        });
+
+        groups.forEach(function (group) {
+          group.records.sort(function (a, b) {
+            return recordPriority(b) - recordPriority(a);
+          });
+          group.display = group.records[0];
+          group.year = Math.max.apply(null, group.records.map(function (record) {
+            return Number(record.year || 0);
+          }));
+        });
+
+        groups.sort(function (a, b) {
+          const yearDifference = b.year - a.year;
+          if (yearDifference) return yearDifference;
+          return normalizeTitle(a.display.title).localeCompare(normalizeTitle(b.display.title));
+        });
+
+        return groups;
+      }
+
+      function versionLabel(record) {
+        const venue = cleanText(record.venue);
+        const type = cleanText(record.type);
+        const year = cleanText(record.year);
+        let label = venue || type || 'Publication';
+        if (isPreprint(record) && (!venue || venue.toLowerCase() === 'corr')) {
+          label = 'Preprint';
+        }
+        return [label, year].filter(Boolean).join(' ');
+      }
+
+      function linkUrl(value) {
+        return objectText(value);
+      }
+
+      function classifyLink(url) {
+        try {
+          const parsed = new URL(url, profileUrl);
+          const host = parsed.hostname.replace(/^www\./, '').toLowerCase();
+          const path = (parsed.pathname + parsed.search).toLowerCase();
+
+          if (host === 'dblp.org') return 'DBLP';
+          if (host.includes('arxiv.org') || path.includes('10.48550/arxiv')) return 'arXiv';
+          if (host === 'doi.org' || host === 'dx.doi.org') return 'DOI';
+          if (host.includes('ieeexplore.ieee.org')) return 'IEEE';
+          if (host.includes('dl.acm.org')) return 'ACM DL';
+          if (host.includes('drops.dagstuhl.de')) return 'DROPS';
+          if (host.includes('springer.com')) return 'Springer';
+          if (host.includes('siam.org')) return 'SIAM';
+          if (host.includes('eprint.iacr.org')) return 'IACR ePrint';
+          if (host.includes('theoryofcomputing.org')) return 'ToC';
+          return host.split('.')[0].replace(/(^|[-_])\w/g, function (match) {
+            return match.replace(/[-_]/, '').toUpperCase();
+          }) || 'Source';
+        } catch (error) {
+          return 'Source';
+        }
+      }
+
+      function linksFor(record) {
+        const links = [];
+        const seen = new Set();
+
+        function add(url, preferredLabel) {
+          const cleanUrl = linkUrl(url);
+          if (!/^https?:\/\//i.test(cleanUrl) || seen.has(cleanUrl)) return;
+          seen.add(cleanUrl);
+          links.push({
+            url: cleanUrl,
+            label: preferredLabel || classifyLink(cleanUrl)
+          });
+        }
+
+        add(record.url, 'DBLP');
+        asArray(record.ee).forEach(function (url) { add(url); });
+        return links;
+      }
+
+      function venueSummary(group) {
+        const labels = [];
+        const seen = new Set();
+        group.records.forEach(function (record) {
+          const label = versionLabel(record);
+          if (label && !seen.has(label)) {
+            seen.add(label);
+            labels.push(label);
+          }
+        });
+        return labels.join(' · ');
+      }
+
+      function renderVersion(record) {
+        const row = document.createElement('div');
+        row.className = 'pub-version';
+
+        const label = document.createElement('span');
+        label.className = 'pub-version-label';
+        label.textContent = versionLabel(record);
+        row.appendChild(label);
+
+        const links = linksFor(record);
+        if (links.length) {
+          const linksContainer = document.createElement('span');
+          linksContainer.className = 'pub-links';
+          links.forEach(function (linkInfo) {
+            const link = document.createElement('a');
+            link.href = linkInfo.url;
+            link.target = '_blank';
+            link.rel = 'noreferrer';
+            link.textContent = linkInfo.label;
+            linksContainer.appendChild(link);
+          });
+          row.appendChild(linksContainer);
+        }
+
+        return row;
+      }
+
+      function render(payload) {
+        const hits = payload && payload.result && payload.result.hits;
+        const records = asArray(hits && hits.hit)
+          .map(function (hit) { return hit && hit.info ? hit.info : null; })
+          .filter(Boolean);
+        const groups = groupRecords(records);
+
+        list.innerHTML = '';
+
+        if (!records.length || !groups.length) {
+          throw new Error('dblp returned no publications');
+        }
+
+        groups.forEach(function (group) {
+          const record = group.display;
+          const item = document.createElement('li');
+          const title = cleanText(record.title).replace(/\.$/, '');
+          const authors = authorsFor(record);
+
+          const venueLine = document.createElement('span');
+          venueLine.className = 'pub-venue';
+          venueLine.textContent = venueSummary(group);
+
+          const titleLine = document.createElement('div');
+          titleLine.className = 'pub-title';
+          const primaryLinks = linksFor(record);
+          const primaryUrl = (primaryLinks[1] && primaryLinks[1].url) ||
+            (primaryLinks[0] && primaryLinks[0].url) || profileUrl;
+          const titleLink = document.createElement('a');
+          titleLink.href = primaryUrl;
+          titleLink.target = '_blank';
+          titleLink.rel = 'noreferrer';
+          titleLink.textContent = title || 'Untitled publication';
+          titleLine.appendChild(titleLink);
+
+          const authorLine = document.createElement('div');
+          authorLine.className = 'pub-authors';
+          authorLine.textContent = authors.join(', ');
+
+          const versions = document.createElement('div');
+          versions.className = 'pub-versions';
+          group.records.forEach(function (version) {
+            versions.appendChild(renderVersion(version));
+          });
+
+          item.appendChild(venueLine);
+          item.appendChild(titleLine);
+          if (authors.length) item.appendChild(authorLine);
+          item.appendChild(versions);
+          list.appendChild(item);
+        });
+
+        list.setAttribute('aria-busy', 'false');
+        const mergedCount = records.length - groups.length;
+        status.textContent = groups.length + (groups.length === 1 ? ' paper' : ' papers') +
+          ' from ' + records.length + ' dblp ' + (records.length === 1 ? 'entry' : 'entries') +
+          (mergedCount ? '; ' + mergedCount + (mergedCount === 1 ? ' version grouped.' : ' versions grouped.') : '.');
+      }
+
+      function fail() {
+        if (completed) return;
+        completed = true;
+        list.setAttribute('aria-busy', 'false');
+        list.innerHTML = '';
+
+        const item = document.createElement('li');
+        item.className = 'publication-error';
+        item.append('The bibliography could not be loaded right now. ');
+        const link = document.createElement('a');
+        link.href = profileUrl;
+        link.target = '_blank';
+        link.rel = 'noreferrer';
+        link.textContent = 'View publications on dblp';
+        item.appendChild(link);
+        item.append('.');
+        list.appendChild(item);
+        status.textContent = 'dblp is temporarily unavailable.';
+        cleanup();
+      }
+
+      function cleanup() {
+        if (requestScript && requestScript.parentNode) {
+          requestScript.parentNode.removeChild(requestScript);
+        }
+        try { delete window[callbackName]; } catch (error) { window[callbackName] = undefined; }
+      }
+
+      window[callbackName] = function (payload) {
+        if (completed) return;
+        try {
+          render(payload);
+          completed = true;
+          cleanup();
+        } catch (error) {
+          fail();
+        }
+      };
+
+      requestScript = document.createElement('script');
+      requestScript.src = endpoint;
+      requestScript.async = true;
+      requestScript.onerror = fail;
+      document.head.appendChild(requestScript);
+      window.setTimeout(fail, 12000);
+    })();
+  </script>
+</body>
+</html>
