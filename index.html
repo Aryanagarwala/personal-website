@@ -875,6 +875,7 @@
           if (host.includes('arxiv.org') || path.includes('10.48550/arxiv')) return 'arXiv';
           if (host === 'doi.org' || host === 'dx.doi.org') return 'DOI';
           if (host.includes('ieeexplore.ieee.org')) return 'IEEE';
+          if (host.includes('eccc')) return 'ECCC';
           if (host.includes('dl.acm.org')) return 'ACM DL';
           if (host.includes('drops.dagstuhl.de')) return 'DROPS';
           if (host.includes('springer.com')) return 'Springer';
