@@ -320,6 +320,24 @@
       color: var(--muted);
     }
 
+    .pub-talks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+
+    .pub-talk {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.2;
+    }
+
     .pub-versions {
       display: grid;
       gap: 0.35rem;
@@ -642,6 +660,22 @@
       if (!list || !status) return;
 
       const profileUrl = 'https://dblp.org/pid/395/6483';
+      // Verified recordings and seminar pages. Keep this small, explicit index rather than
+      // relying on a third-party search endpoint that browsers commonly block with CORS.
+      const talksByTitle = {
+        'linear matroid intersection is in catalytic logspace': [{
+          url: 'https://youtu.be/O1MoqXD7Icg',
+          speaker: 'Aryan Agarwala'
+        }],
+        'pseudodeterministic algorithms for minimum cut problems': [{
+          url: 'https://youtu.be/bwZi6TNAyvw',
+          speaker: 'Aryan Agarwala'
+        }],
+        'bipartite matching is in catalytic logspace': [{
+          url: 'https://youtu.be/8nUpLv4t28I',
+          speaker: 'Ian Mertz'
+        }]
+      };
       const query = 'author:Aryan_Agarwala:';
       const callbackName = '__aryanDblp_' + Date.now().toString(36);
       const endpoint = 'https://dblp.org/search/publ/api' +
@@ -876,6 +910,48 @@
         return links;
       }
 
+      function talkVenue(url) {
+        try {
+          const host = new URL(url).hostname.replace(/^www\./, '');
+          const names = {
+            'youtube.com': 'YouTube',
+            'youtu.be': 'YouTube',
+            'vimeo.com': 'Vimeo',
+            'slideslive.com': 'SlidesLive',
+            'zoom.us': 'Zoom'
+          };
+          return names[host] || host.split('.').slice(0, -1).join('.') || host;
+        } catch (error) {
+          return 'Online';
+        }
+      }
+
+      function venueFor(url, text) {
+        const details = cleanText(text);
+        const labelled = details.match(/(?:venue|location)\s*[:\-]\s*([^.|;]+)/i);
+        if (labelled && labelled[1]) return labelled[1].trim();
+        const city = details.match(/\b(Lisbon|Saarbrücken|Dagstuhl|Vancouver|Sydney)\b/i);
+        if (city) return city[1];
+        const event = details.match(/\b(ITCS|FOCS|STOC|ICALP|MFCS|SODA|ESA)\b/i);
+        if (event) return event[1].toUpperCase();
+        return talkVenue(url);
+      }
+
+      function addTalkLinks(record, container) {
+        const key = normalizeTitle(record.title);
+        const talks = talksByTitle[key] || [];
+        talks.forEach(function (talk) {
+          const link = document.createElement('a');
+          link.className = 'pub-talk';
+          link.href = talk.url;
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+          link.textContent = 'Talk by ' + talk.speaker;
+          link.setAttribute('aria-label', 'Open talk by ' + talk.speaker);
+          container.appendChild(link);
+        });
+      }
+
       function venueSummary(group) {
         const labels = [];
         const seen = new Set();
@@ -961,10 +1037,15 @@
             versions.appendChild(renderVersion(version));
           });
 
+          const talks = document.createElement('div');
+          talks.className = 'pub-talks';
+          addTalkLinks(record, talks);
+
           item.appendChild(venueLine);
           item.appendChild(titleLine);
           if (authors.length) item.appendChild(authorLine);
           item.appendChild(versions);
+          item.appendChild(talks);
           list.appendChild(item);
         });
 
