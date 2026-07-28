@@ -1,0 +1,265 @@
+{
+  "result": {
+    "query": ":facetid:author:\"Aryan_Agarwala\"",
+    "status": {
+      "@code": "200",
+      "text": "OK"
+    },
+    "time": {
+      "@unit": "msecs",
+      "text": "0.61"
+    },
+    "completions": {
+      "@total": "1",
+      "@computed": "1",
+      "@sent": "0"
+    },
+    "hits": {
+      "@total": "8",
+      "@computed": "8",
+      "@sent": "8",
+      "@first": "0",
+      "hit": [
+        {
+          "@score": "1",
+          "@id": "175480",
+          "info": {
+            "authors": {
+              "author": [
+                {
+                  "@pid": "395/6483",
+                  "text": "Aryan Agarwala"
+                },
+                {
+                  "@pid": "41/11199",
+                  "text": "Nithin Varma 0001"
+                }
+              ]
+            },
+            "title": "Pseudodeterministic Algorithms for Minimum Cut Problems.",
+            "venue": "ITCS",
+            "pages": "4:1-4:15",
+            "year": "2026",
+            "type": "Conference and Workshop Papers",
+            "access": "open",
+            "key": "conf/innovations/Agarwala026",
+            "doi": "10.4230/LIPICS.ITCS.2026.4",
+            "ee": "https://doi.org/10.4230/LIPIcs.ITCS.2026.4",
+            "url": "https://dblp.org/rec/conf/innovations/Agarwala026"
+          },
+          "url": "URL#175480"
+        },
+        {
+          "@score": "1",
+          "@id": "175481",
+          "info": {
+            "authors": {
+              "author": [
+                {
+                  "@pid": "395/6483",
+                  "text": "Aryan Agarwala"
+                },
+                {
+                  "@pid": "252/5178",
+                  "text": "Yaroslav Alekseev"
+                },
+                {
+                  "@pid": "405/5640",
+                  "text": "Antoine Vinciguerra"
+                }
+              ]
+            },
+            "title": "Linear Matroid Intersection Is in Catalytic Logspace.",
+            "venue": "ITCS",
+            "pages": "3:1-3:23",
+            "year": "2026",
+            "type": "Conference and Workshop Papers",
+            "access": "open",
+            "key": "conf/innovations/AgarwalaAV26",
+            "doi": "10.4230/LIPICS.ITCS.2026.3",
+            "ee": "https://doi.org/10.4230/LIPIcs.ITCS.2026.3",
+            "url": "https://dblp.org/rec/conf/innovations/AgarwalaAV26"
+          },
+          "url": "URL#175481"
+        },
+        {
+          "@score": "1",
+          "@id": "598811",
+          "info": {
+            "authors": {
+              "author": [
+                {
+                  "@pid": "395/6483",
+                  "text": "Aryan Agarwala"
+                },
+                {
+                  "@pid": "154/1953",
+                  "text": "Ian Mertz"
+                }
+              ]
+            },
+            "title": "Bipartite Matching is in Catalytic Logspace.",
+            "venue": "FOCS",
+            "pages": "360-372",
+            "year": "2025",
+            "type": "Conference and Workshop Papers",
+            "access": "closed",
+            "key": "conf/focs/AgarwalaM25",
+            "doi": "10.1109/FOCS63196.2025.00022",
+            "ee": "https://doi.org/10.1109/FOCS63196.2025.00022",
+            "url": "https://dblp.org/rec/conf/focs/AgarwalaM25"
+          },
+          "url": "URL#598811"
+        },
+        {
+          "@score": "1",
+          "@id": "774818",
+          "info": {
+            "authors": {
+              "author": [
+                {
+                  "@pid": "395/6483",
+                  "text": "Aryan Agarwala"
+                },
+                {
+                  "@pid": "154/1953",
+                  "text": "Ian Mertz"
+                }
+              ]
+            },
+            "title": "Bipartite Matching is in Catalytic Logspace.",
+            "venue": "CoRR",
+            "volume": "abs/2504.09991",
+            "year": "2025",
+            "type": "Informal and Other Publications",
+            "access": "open",
+            "key": "journals/corr/abs-2504-09991",
+            "doi": "10.48550/ARXIV.2504.09991",
+            "ee": "https://doi.org/10.48550/arXiv.2504.09991",
+            "url": "https://dblp.org/rec/journals/corr/abs-2504-09991"
+          },
+          "url": "URL#774818"
+        },
+        {
+          "@score": "1",
+          "@id": "835645",
+          "info": {
+            "authors": {
+              "author": [
+                {
+                  "@pid": "395/6483",
+                  "text": "Aryan Agarwala"
+                },
+                {
+                  "@pid": "252/5178",
+                  "text": "Yaroslav Alekseev"
+                },
+                {
+                  "@pid": "405/5640",
+                  "text": "Antoine Vinciguerra"
+                }
+              ]
+            },
+            "title": "Linear Matroid Intersection is in Catalytic Logspace.",
+            "venue": "CoRR",
+            "volume": "abs/2509.06435",
+            "year": "2025",
+            "type": "Informal and Other Publications",
+            "access": "open",
+            "key": "journals/corr/abs-2509-06435",
+            "doi": "10.48550/ARXIV.2509.06435",
+            "ee": "https://doi.org/10.48550/arXiv.2509.06435",
+            "url": "https://dblp.org/rec/journals/corr/abs-2509-06435"
+          },
+          "url": "URL#835645"
+        },
+        {
+          "@score": "1",
+          "@id": "885451",
+          "info": {
+            "authors": {
+              "author": [
+                {
+                  "@pid": "395/6483",
+                  "text": "Aryan Agarwala"
+                },
+                {
+                  "@pid": "41/11199",
+                  "text": "Nithin Varma 0001"
+                }
+              ]
+            },
+            "title": "Pseudodeterministic Algorithms for Minimum Cut Problems.",
+            "venue": "CoRR",
+            "volume": "abs/2512.23468",
+            "year": "2025",
+            "type": "Informal and Other Publications",
+            "access": "open",
+            "key": "journals/corr/abs-2512-23468",
+            "doi": "10.48550/ARXIV.2512.23468",
+            "ee": "https://doi.org/10.48550/arXiv.2512.23468",
+            "url": "https://dblp.org/rec/journals/corr/abs-2512-23468"
+          },
+          "url": "URL#885451"
+        },
+        {
+          "@score": "1",
+          "@id": "886258",
+          "info": {
+            "authors": {
+              "author": [
+                {
+                  "@pid": "395/6483",
+                  "text": "Aryan Agarwala"
+                },
+                {
+                  "@pid": "154/1953",
+                  "text": "Ian Mertz"
+                }
+              ]
+            },
+            "title": "Bipartite Matching is in Catalytic Logspace.",
+            "venue": "Electron. Colloquium Comput. Complex.",
+            "volume": "TR25",
+            "year": "2025",
+            "type": "Informal and Other Publications",
+            "access": "open",
+            "key": "journals/eccc/AgarwalaM25",
+            "ee": "https://eccc.weizmann.ac.il/report/2025/048",
+            "url": "https://dblp.org/rec/journals/eccc/AgarwalaM25"
+          },
+          "url": "URL#886258"
+        },
+        {
+          "@score": "1",
+          "@id": "1474854",
+          "info": {
+            "authors": {
+              "author": [
+                {
+                  "@pid": "395/6483",
+                  "text": "Aryan Agarwala"
+                },
+                {
+                  "@pid": "45/1790",
+                  "text": "Guy Even"
+                }
+              ]
+            },
+            "title": "A Space Lower Bound for Approximate Membership with Duplicate Insertions or Deletions of Nonelements.",
+            "venue": "CoRR",
+            "volume": "abs/2412.19249",
+            "year": "2024",
+            "type": "Informal and Other Publications",
+            "access": "open",
+            "key": "journals/corr/abs-2412-19249",
+            "doi": "10.48550/ARXIV.2412.19249",
+            "ee": "https://doi.org/10.48550/arXiv.2412.19249",
+            "url": "https://dblp.org/rec/journals/corr/abs-2412-19249"
+          },
+          "url": "URL#1474854"
+        }
+      ]
+    }
+  }
+}
