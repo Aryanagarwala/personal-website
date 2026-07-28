@@ -298,13 +298,6 @@
       text-underline-offset: 0.2em;
     }
 
-    .publication-status {
-      min-height: 1.5rem;
-      margin: 0 0 0.5rem;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
     .pub-title a {
       text-decoration: underline;
       text-decoration-color: transparent;
@@ -318,6 +311,24 @@
 
     .publication-error {
       color: var(--muted);
+    }
+
+    .pub-talks {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.6rem;
+    }
+
+    .pub-talk {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.2;
     }
 
     .pub-versions {
@@ -408,6 +419,14 @@
       color: var(--muted);
     }
 
+    #teaching details {
+      border: 0;
+    }
+
+    #teaching details + details {
+      border-top: 1px solid var(--line);
+    }
+
     .teaching-list li { padding: 0.2rem 0; }
 
     .footer {
@@ -474,7 +493,7 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="portrait">
-          <img src="https://www.mpi-inf.mpg.de/fileadmin/inf/d1/profile_pictures/aryanagarwala.jpg" alt="Portrait of Aryan Agarwala" />
+          <img src="/aryanagarwala.jpeg" alt="Portrait of Aryan Agarwala" />
         </div>
         <div>
           <p class="eyebrow">Algorithms and Complexity · Saarbrucken</p>
@@ -522,7 +541,6 @@
           <div class="publications-head">
             <h2>Publications</h2>
           </div>
-          <p class="publication-status" id="dblp-status" aria-live="polite">Loading publications…</p>
           <ul class="publications" id="dblp-publications" aria-busy="true">
 </ul>
           <noscript><p class="publication-error"><a href="https://dblp.org/pid/395/6483">View publications on dblp</a></p></noscript>
@@ -558,12 +576,20 @@
           <details>
             <summary>Teaching assistant at Chennai Mathematical Institute (2021–2023)</summary>
             <ul class="teaching-list">
-              <li>Introduction to Programming · Sep–Dec 2021</li>
-              <li>Analysis 1 · Sep–Dec 2021</li>
-              <li>Advanced Programming · Jan–Apr 2022 and 2023</li>
-              <li>Discrete Mathematics · Jan–Apr 2022</li>
-              <li>Design and Analysis of Algorithms · Aug–Nov 2022</li>
-              <li>Programming Language Concepts · Jan–Apr 2023</li>
+              <li>Introduction to Programming · Fall 2021</li>
+              <li>Analysis 1 · Fall 2021</li>
+              <li>Advanced Programming · Spring 2022 and Spring 2023</li>
+              <li>Discrete Mathematics · Spring 2022</li>
+              <li>Design and Analysis of Algorithms · Fall 2022</li>
+              <li>Complexity Theory · Spring 2023</li>
+              <li>Programming Language Concepts · Spring 2023</li>
+            </ul>
+          </details>
+          <details>
+            <summary>Teaching assistant at Saarland University (2023–Present)</summary>
+            <ul class="teaching-list">
+              <li>Discrete Optimization · Summer 2024</li>
+              <li>Algorithms and Data Structures · Summer 2026</li>
             </ul>
           </details>
         </div>
@@ -599,7 +625,6 @@
         <div>
           <h2>Get in touch</h2>
           <ul class="contact-list">
-            <li><span class="item-title">Address</span><div class="item-sub">Max Planck Institute for Informatics</div></li>
             <li><span class="item-title">Phone</span><div class="item-sub"><a href="tel:+4968193251129">+49 681 9325 1129</a></div></li>
             <li><span class="item-title">Fax</span><div class="item-sub">+49 681 9325 9199</div></li>
             <li>
@@ -620,20 +645,35 @@
 
   <script>
     (function () {
-      const email = ['aryan', 'agarwalas.in'].join('@');
+      const email = ['aryan', 'agarwalas dot in'].join(' at ');
       const emailLink = document.getElementById('email-link');
       const contactLink = document.getElementById('contact-link');
       if (emailLink) {
         emailLink.href = 'mailto:' + email;
         emailLink.textContent = email;
       }
-      if (contactLink) contactLink.href = 'mailto:' + email;
+      if (contactLink) contactLink.href = 'mailto:aryan@agarwalas.in';
       const list = document.getElementById('dblp-publications');
-      const status = document.getElementById('dblp-status');
-      if (!list || !status) return;
+      if (!list) return;
 
       const profileUrl = 'https://dblp.org/pid/395/6483';
       const cacheUrl = './dblp-cache.json';
+      // Verified recordings and seminar pages. Keep this small, explicit index rather than
+      // relying on a third-party search endpoint that browsers commonly block with CORS.
+      const talksByTitle = {
+        'linear matroid intersection is in catalytic logspace': [{
+          url: 'https://youtu.be/O1MoqXD7Icg',
+          speaker: 'Aryan Agarwala'
+        }],
+        'pseudodeterministic algorithms for minimum cut problems': [{
+          url: 'https://youtu.be/bwZi6TNAyvw',
+          speaker: 'Aryan Agarwala'
+        }],
+        'bipartite matching is in catalytic logspace': [{
+          url: 'https://youtu.be/8nUpLv4t28I',
+          speaker: 'Ian Mertz'
+        }]
+      };
       const query = 'author:Aryan_Agarwala:';
       const callbackName = '__aryanDblp_' + Date.now().toString(36);
       const endpoint = 'https://dblp.org/search/publ/api' +
@@ -865,6 +905,7 @@
           if (host.includes('arxiv.org') || path.includes('10.48550/arxiv')) return 'arXiv';
           if (host === 'doi.org' || host === 'dx.doi.org') return 'DOI';
           if (host.includes('ieeexplore.ieee.org')) return 'IEEE';
+          if (host.includes('eccc')) return 'ECCC';
           if (host.includes('dl.acm.org')) return 'ACM DL';
           if (host.includes('drops.dagstuhl.de')) return 'DROPS';
           if (host.includes('springer.com')) return 'Springer';
@@ -896,6 +937,48 @@
         add(record.url, 'DBLP');
         asArray(record.ee).forEach(function (url) { add(url); });
         return links;
+      }
+
+      function talkVenue(url) {
+        try {
+          const host = new URL(url).hostname.replace(/^www\./, '');
+          const names = {
+            'youtube.com': 'YouTube',
+            'youtu.be': 'YouTube',
+            'vimeo.com': 'Vimeo',
+            'slideslive.com': 'SlidesLive',
+            'zoom.us': 'Zoom'
+          };
+          return names[host] || host.split('.').slice(0, -1).join('.') || host;
+        } catch (error) {
+          return 'Online';
+        }
+      }
+
+      function venueFor(url, text) {
+        const details = cleanText(text);
+        const labelled = details.match(/(?:venue|location)\s*[:\-]\s*([^.|;]+)/i);
+        if (labelled && labelled[1]) return labelled[1].trim();
+        const city = details.match(/\b(Lisbon|Saarbrücken|Dagstuhl|Vancouver|Sydney)\b/i);
+        if (city) return city[1];
+        const event = details.match(/\b(ITCS|FOCS|STOC|ICALP|MFCS|SODA|ESA)\b/i);
+        if (event) return event[1].toUpperCase();
+        return talkVenue(url);
+      }
+
+      function addTalkLinks(record, container) {
+        const key = normalizeTitle(record.title);
+        const talks = talksByTitle[key] || [];
+        talks.forEach(function (talk) {
+          const link = document.createElement('a');
+          link.className = 'pub-talk';
+          link.href = talk.url;
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+          link.textContent = 'Talk by ' + talk.speaker;
+          link.setAttribute('aria-label', 'Open talk by ' + talk.speaker);
+          container.appendChild(link);
+        });
       }
 
       function venueSummary(group) {
@@ -981,18 +1064,19 @@
             versions.appendChild(renderVersion(version));
           });
 
+          const talks = document.createElement('div');
+          talks.className = 'pub-talks';
+          addTalkLinks(record, talks);
+
           item.appendChild(venueLine);
           item.appendChild(titleLine);
           if (authors.length) item.appendChild(authorLine);
           item.appendChild(versions);
+          item.appendChild(talks);
           list.appendChild(item);
         });
 
         list.setAttribute('aria-busy', 'false');
-        const mergedCount = records.length - groups.length;
-        status.textContent = groups.length + (groups.length === 1 ? ' paper' : ' papers') +
-          ' from ' + records.length + ' dblp ' + (records.length === 1 ? 'entry' : 'entries') +
-          (mergedCount ? '; ' + mergedCount + (mergedCount === 1 ? ' version grouped.' : ' versions grouped.') : '.');
       }
 
       function showFailure() {
@@ -1012,7 +1096,6 @@
         item.appendChild(link);
         item.append('.');
         list.appendChild(item);
-        status.textContent = 'dblp is temporarily unavailable.';
         cleanup();
       }
 
@@ -1045,7 +1128,6 @@
             if (completed) return;
             render(payload);
             completed = true;
-            status.textContent += ' Showing the most recently saved copy.';
             cleanup();
           })
           .catch(showFailure);
