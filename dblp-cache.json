@@ -7,7 +7,7 @@
     },
     "time": {
       "@unit": "msecs",
-      "text": "1.00"
+      "text": "33.64"
     },
     "completions": {
       "@total": "1",
@@ -84,7 +84,7 @@
         },
         {
           "@score": "1",
-          "@id": "604755",
+          "@id": "604921",
           "info": {
             "authors": {
               "author": [
@@ -109,11 +109,11 @@
             "ee": "https://doi.org/10.1109/FOCS63196.2025.00022",
             "url": "https://dblp.org/rec/conf/focs/AgarwalaM25"
           },
-          "url": "URL#604755"
+          "url": "URL#604921"
         },
         {
           "@score": "1",
-          "@id": "782597",
+          "@id": "782763",
           "info": {
             "authors": {
               "author": [
@@ -138,11 +138,11 @@
             "ee": "https://doi.org/10.48550/arXiv.2504.09991",
             "url": "https://dblp.org/rec/journals/corr/abs-2504-09991"
           },
-          "url": "URL#782597"
+          "url": "URL#782763"
         },
         {
           "@score": "1",
-          "@id": "843424",
+          "@id": "843590",
           "info": {
             "authors": {
               "author": [
@@ -171,11 +171,11 @@
             "ee": "https://doi.org/10.48550/arXiv.2509.06435",
             "url": "https://dblp.org/rec/journals/corr/abs-2509-06435"
           },
-          "url": "URL#843424"
+          "url": "URL#843590"
         },
         {
           "@score": "1",
-          "@id": "893230",
+          "@id": "893396",
           "info": {
             "authors": {
               "author": [
@@ -200,11 +200,11 @@
             "ee": "https://doi.org/10.48550/arXiv.2512.23468",
             "url": "https://dblp.org/rec/journals/corr/abs-2512-23468"
           },
-          "url": "URL#893230"
+          "url": "URL#893396"
         },
         {
           "@score": "1",
-          "@id": "894037",
+          "@id": "894203",
           "info": {
             "authors": {
               "author": [
@@ -228,11 +228,11 @@
             "ee": "https://eccc.weizmann.ac.il/report/2025/048",
             "url": "https://dblp.org/rec/journals/eccc/AgarwalaM25"
           },
-          "url": "URL#894037"
+          "url": "URL#894203"
         },
         {
           "@score": "1",
-          "@id": "1482723",
+          "@id": "1482889",
           "info": {
             "authors": {
               "author": [
@@ -257,7 +257,7 @@
             "ee": "https://doi.org/10.48550/arXiv.2412.19249",
             "url": "https://dblp.org/rec/journals/corr/abs-2412-19249"
           },
-          "url": "URL#1482723"
+          "url": "URL#1482889"
         }
       ]
     }
