@@ -7,7 +7,7 @@
     },
     "time": {
       "@unit": "msecs",
-      "text": "1.07"
+      "text": "92.16"
     },
     "completions": {
       "@total": "1",
@@ -22,7 +22,7 @@
       "hit": [
         {
           "@score": "1",
-          "@id": "187746",
+          "@id": "187773",
           "info": {
             "authors": {
               "author": [
@@ -47,11 +47,11 @@
             "ee": "https://doi.org/10.4230/LIPIcs.ITCS.2026.4",
             "url": "https://dblp.org/rec/conf/innovations/Agarwala026"
           },
-          "url": "URL#187746"
+          "url": "URL#187773"
         },
         {
           "@score": "1",
-          "@id": "187747",
+          "@id": "187774",
           "info": {
             "authors": {
               "author": [
@@ -80,11 +80,11 @@
             "ee": "https://doi.org/10.4230/LIPIcs.ITCS.2026.3",
             "url": "https://dblp.org/rec/conf/innovations/AgarwalaAV26"
           },
-          "url": "URL#187747"
+          "url": "URL#187774"
         },
         {
           "@score": "1",
-          "@id": "632401",
+          "@id": "632755",
           "info": {
             "authors": {
               "author": [
@@ -109,11 +109,11 @@
             "ee": "https://doi.org/10.1109/FOCS63196.2025.00022",
             "url": "https://dblp.org/rec/conf/focs/AgarwalaM25"
           },
-          "url": "URL#632401"
+          "url": "URL#632755"
         },
         {
           "@score": "1",
-          "@id": "813620",
+          "@id": "814041",
           "info": {
             "authors": {
               "author": [
@@ -138,11 +138,11 @@
             "ee": "https://doi.org/10.48550/arXiv.2504.09991",
             "url": "https://dblp.org/rec/journals/corr/abs-2504-09991"
           },
-          "url": "URL#813620"
+          "url": "URL#814041"
         },
         {
           "@score": "1",
-          "@id": "874442",
+          "@id": "874863",
           "info": {
             "authors": {
               "author": [
@@ -171,11 +171,11 @@
             "ee": "https://doi.org/10.48550/arXiv.2509.06435",
             "url": "https://dblp.org/rec/journals/corr/abs-2509-06435"
           },
-          "url": "URL#874442"
+          "url": "URL#874863"
         },
         {
           "@score": "1",
-          "@id": "924231",
+          "@id": "924652",
           "info": {
             "authors": {
               "author": [
@@ -200,11 +200,11 @@
             "ee": "https://doi.org/10.48550/arXiv.2512.23468",
             "url": "https://dblp.org/rec/journals/corr/abs-2512-23468"
           },
-          "url": "URL#924231"
+          "url": "URL#924652"
         },
         {
           "@score": "1",
-          "@id": "925045",
+          "@id": "925466",
           "info": {
             "authors": {
               "author": [
@@ -228,11 +228,11 @@
             "ee": "https://eccc.weizmann.ac.il/report/2025/048",
             "url": "https://dblp.org/rec/journals/eccc/AgarwalaM25"
           },
-          "url": "URL#925045"
+          "url": "URL#925466"
         },
         {
           "@score": "1",
-          "@id": "1514374",
+          "@id": "1514852",
           "info": {
             "authors": {
               "author": [
@@ -257,7 +257,7 @@
             "ee": "https://doi.org/10.48550/arXiv.2412.19249",
             "url": "https://dblp.org/rec/journals/corr/abs-2412-19249"
           },
-          "url": "URL#1514374"
+          "url": "URL#1514852"
         }
       ]
     }
