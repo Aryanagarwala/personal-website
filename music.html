@@ -1115,7 +1115,7 @@
             <aside class="xp-sidebar">
               <p class="xp-sidebar-label">Random mode / Apple preview</p>
               <h2>Guess the song</h2>
-              <p>You get seventeen seconds from a random point in a song from Aryan’s Heavy Rotation. Type the title—not the artist—or sacrifice your dignity and request a hint.</p>
+              <p></p>
             </aside>
 
             <div class="xp-game">
@@ -2083,11 +2083,11 @@
         launchConfetti();
         if (guessMessage) {
           guessMessage.classList.remove('is-wrong');
-          guessMessage.textContent = 'CORRECT. Somehow the computer respects you now.';
+          guessMessage.textContent = 'CORRECT!';
         }
         if (winCopy && currentTrack) {
           winCopy.textContent = 'Correct: “' + currentTrack.trackName + '” by ' +
-            currentTrack.artistName + '. Your prize is this extremely advanced graphic.';
+            currentTrack.artistName + '. Please email Evangelos Kipouridis to receive your prize.';
         }
         if (winPopup) winPopup.hidden = false;
         if (winOk) winOk.focus();
