@@ -679,8 +679,10 @@
       const endpoint = 'https://dblp.org/search/publ/api' +
         '?q=' + encodeURIComponent(query) +
         '&format=jsonp&h=1000&c=0&callback=' + encodeURIComponent(callbackName);
-      let completed = false;
-      let cacheAttempted = false;
+      let hasRendered = false;
+      let cacheRequestFinished = false;
+      let liveRequestFinished = false;
+      let liveResponseRendered = false;
       let requestScript;
       let requestTimer;
 
@@ -1080,8 +1082,8 @@
       }
 
       function showFailure() {
-        if (completed) return;
-        completed = true;
+        if (hasRendered || !cacheRequestFinished || !liveRequestFinished) return;
+        hasRendered = true;
         list.setAttribute('aria-busy', 'false');
         list.innerHTML = '';
 
@@ -1100,14 +1102,6 @@
       }
 
       function loadCachedResponse() {
-        if (completed) return;
-        if (cacheAttempted) {
-          showFailure();
-          return;
-        }
-        cacheAttempted = true;
-        cleanup();
-
         fetch(cacheUrl, {
           cache: 'no-store',
           credentials: 'same-origin',
@@ -1125,17 +1119,22 @@
             if (!recordsFromPayload(payload)) {
               throw new Error('cached dblp response is invalid');
             }
-            if (completed) return;
+            if (liveResponseRendered) return;
             render(payload);
-            completed = true;
-            cleanup();
+            hasRendered = true;
           })
-          .catch(showFailure);
+          .catch(function () {})
+          .finally(function () {
+            cacheRequestFinished = true;
+            showFailure();
+          });
       }
 
-      function fail() {
-        if (completed) return;
-        loadCachedResponse();
+      function failLiveRequest() {
+        if (liveRequestFinished) return;
+        liveRequestFinished = true;
+        cleanup();
+        showFailure();
       }
 
       function cleanup() {
@@ -1149,23 +1148,29 @@
         try { delete window[callbackName]; } catch (error) { window[callbackName] = undefined; }
       }
 
-      window[callbackName] = function (payload) {
-        if (completed) return;
-        try {
-          render(payload);
-          completed = true;
+      function requestLiveResponse() {
+        window[callbackName] = function (payload) {
+          if (liveRequestFinished) return;
+          liveRequestFinished = true;
+          try {
+            render(payload);
+            hasRendered = true;
+            liveResponseRendered = true;
+          } catch (error) {}
           cleanup();
-        } catch (error) {
-          fail();
-        }
-      };
+          showFailure();
+        };
 
-      requestScript = document.createElement('script');
-      requestScript.src = endpoint;
-      requestScript.async = true;
-      requestScript.onerror = fail;
-      document.head.appendChild(requestScript);
-      requestTimer = window.setTimeout(fail, 12000);
+        requestScript = document.createElement('script');
+        requestScript.src = endpoint;
+        requestScript.async = true;
+        requestScript.onerror = failLiveRequest;
+        document.head.appendChild(requestScript);
+        requestTimer = window.setTimeout(failLiveRequest, 12000);
+      }
+
+      loadCachedResponse();
+      requestLiveResponse();
     })();
   </script>
 </body>
