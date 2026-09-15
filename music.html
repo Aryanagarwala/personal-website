@@ -1114,7 +1114,7 @@
             <aside class="xp-sidebar">
               <p class="xp-sidebar-label">Random Shuffle</p>
               <h2>Guess the song</h2>
-              <p></p>
+              <p>17-second clues from Heavy Rotation and Your Essentials. Guess the title or ask for an artist hint.</p>
             </aside>
 
             <div class="xp-game">
@@ -1268,12 +1268,22 @@
       const appleSearchUrl = 'https://itunes.apple.com/search';
       const appleLookupUrl = 'https://itunes.apple.com/lookup';
       const heavyRotationManifestUrl = 'heavy-rotation.json';
+      const yourEssentialsManifestUrl = 'your-essentials.json';
+      const heavyRotationPlaylistId = 'pl.pm-d5779e520ff52d7f27baa09ac519ba18';
+      const yourEssentialsPlaylistId = 'pl.pm-d5779e520ff52d7feeb827d07e2d093b';
       const bundledHeavyRotationIds = [
         '328074597', '328074556', '328074605', '1337791406', '581797964',
         '1337791308', '1337791260', '1337791357', '1337791444', '1891161450',
         '1891161447', '1498121956', '1891161445', '299740757', '328074591',
         '328074583', '328074610', '601140646', '299740716', '328074589',
         '1891161442', '1337791430', '328074598', '1337791435', '328074588'
+      ];
+      const bundledYourEssentialsIds = [
+        '1440857907', '1224353521', '1838782549', '947701052', '1065973979',
+        '1440817744', '1565392075', '92275612', '1811777071', '503056415',
+        '335838064', '1589191939', '7060447', '1440859494', '1111577965',
+        '640047587', '266024329', '926187671', '903055961', '6776896708',
+        '1440831219', '1525933492', '1449649589', '316335894', '251127052'
       ];
       const essentialsTitles = {
         whiteStripes: [
@@ -1813,8 +1823,9 @@
         });
       }
 
-      function validHeavyRotationManifest(manifest) {
-        if (!manifest || !Array.isArray(manifest.tracks) ||
+      function validPlaylistManifest(manifest, expectedPlaylistId) {
+        if (!manifest || manifest.playlistId !== expectedPlaylistId ||
+            !Array.isArray(manifest.tracks) ||
             manifest.tracks.length < 1 || manifest.tracks.length > 100) {
           return false;
         }
@@ -1831,20 +1842,20 @@
         });
       }
 
-      function loadHeavyRotationManifest() {
+      function loadPlaylistManifest(url, playlistId, bundledIds) {
         const fallback = {
-          tracks: bundledHeavyRotationIds.map(function (id) { return { id: id }; })
+          tracks: bundledIds.map(function (id) { return { id: id }; })
         };
         if (window.location.protocol === 'file:') return Promise.resolve(fallback);
 
-        return fetch(heavyRotationManifestUrl, { cache: 'no-store' })
+        return fetch(url, { cache: 'no-store' })
           .then(function (response) {
-            if (!response.ok) throw new Error('Heavy Rotation list did not load');
+            if (!response.ok) throw new Error('Playlist list did not load');
             return response.json();
           })
           .then(function (manifest) {
-            if (!validHeavyRotationManifest(manifest)) {
-              throw new Error('Heavy Rotation list is invalid');
+            if (!validPlaylistManifest(manifest, playlistId)) {
+              throw new Error('Playlist list is invalid');
             }
             return manifest;
           })
@@ -1914,11 +1925,21 @@
       }
 
       function loadCatalog() {
-        return loadHeavyRotationManifest()
-          .then(function (manifest) {
-            const allowedIds = new Set(manifest.tracks.map(function (track) {
-              return String(track.id);
-            }));
+        return Promise.all([
+          loadPlaylistManifest(
+            heavyRotationManifestUrl, heavyRotationPlaylistId, bundledHeavyRotationIds
+          ),
+          loadPlaylistManifest(
+            yourEssentialsManifestUrl, yourEssentialsPlaylistId, bundledYourEssentialsIds
+          )
+        ])
+          .then(function (manifests) {
+            const allowedIds = new Set();
+            manifests.forEach(function (manifest) {
+              manifest.tracks.forEach(function (track) {
+                allowedIds.add(String(track.id));
+              });
+            });
             return appleLookup(Array.from(allowedIds)).then(function (results) {
               allTracks = deduplicateTracks(results.filter(function (track) {
                 return track && track.previewUrl && allowedIds.has(String(track.trackId));
@@ -1927,9 +1948,9 @@
           })
           .then(function () {
           if (!allTracks.length) {
-            throw new Error('No playable Heavy Rotation previews were returned');
+            throw new Error('No playable playlist previews were returned');
           }
-          trackGroups = [{ group: 'heavy-rotation', tracks: allTracks }];
+          trackGroups = [{ group: 'both-playlists', tracks: allTracks }];
           trackBag = [];
           regenerateShuffleSeed();
           return allTracks.length;
@@ -2152,7 +2173,7 @@
         nextTrack();
         if (guessMessage) {
           guessMessage.classList.remove('is-wrong');
-          guessMessage.textContent = count + ' Heavy Rotation previews loaded. Mystery song selected.';
+          guessMessage.textContent = count + ' playlist previews loaded. Mystery song selected.';
         }
       }).catch(function () {
         if (playClueButton) {
@@ -2161,7 +2182,7 @@
         }
         if (guessMessage) {
           guessMessage.classList.add('is-wrong');
-          guessMessage.textContent = 'Heavy Rotation did not load. Check your connection and refresh.';
+          guessMessage.textContent = 'Playlist previews did not load. Check your connection and refresh.';
         }
       });
 
