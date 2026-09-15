@@ -23,18 +23,18 @@ jobs:
         continue-on-error: true
         run: node scripts/refresh-dblp-cache.mjs
 
-      - name: Download and validate Heavy Rotation
+      - name: Download and validate music playlists
         continue-on-error: true
         run: node scripts/refresh-heavy-rotation.mjs
 
       - name: Commit changed caches
         run: |
-          if git diff --quiet -- dblp-cache.json heavy-rotation.json; then
+          if git diff --quiet -- dblp-cache.json heavy-rotation.json your-essentials.json; then
             echo "Cached data has not changed."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dblp-cache.json heavy-rotation.json
+          git add dblp-cache.json heavy-rotation.json your-essentials.json
           git commit -m "Refresh site caches"
           git push
