@@ -1061,21 +1061,21 @@
     <div class="topbar-left">
       <a class="home-link" href="index.html#hobbies">← Eject</a>
       <span class="status-light" aria-hidden="true"></span>
-      <span>Aryan Music System v.2.001</span>
+      <span data-lyric-slot="system">Aryan Music System v.2.001</span>
     </div>
     <div class="topbar-right">
-      <button class="palette-button" id="palette-button" type="button">Color shift</button>
+      <button class="palette-button" id="palette-button" type="button" data-lyric-slot="palette">Color shift</button>
       <time class="clock" id="clock">--:--</time>
     </div>
   </header>
 
   <main>
     <section class="hero" aria-labelledby="page-title">
-      <p class="boot-line">MUSIC MUSIC MUSIC MUSIC</p>
+      <p class="boot-line" data-lyric-slot="boot">MUSIC MUSIC MUSIC MUSIC</p>
       <h1 id="page-title" aria-label="Music">Music</h1>
 
       <div class="hero-copy">
-        <p class="intro">
+        <p class="intro" data-lyric-slot="intro">
           Explore my playlists and play a fun mini-game.
         </p>
         <div class="sticker" aria-hidden="true">IS<br />THIS<br />IIIITTTT</div>
@@ -1102,7 +1102,7 @@
 
     <section class="game-zone" aria-labelledby="guess-game-heading">
       <div class="game-shell">
-        <h2 class="game-heading" id="guess-game-heading">Mini Game Arcade</h2>
+        <h2 class="game-heading" id="guess-game-heading" data-lyric-slot="arcade">Mini Game Arcade</h2>
 
         <div class="xp-window" id="guess-song-game">
           <div class="xp-titlebar">
@@ -1112,9 +1112,9 @@
 
           <div class="xp-body">
             <aside class="xp-sidebar">
-              <p class="xp-sidebar-label">Random Shuffle</p>
+              <p class="xp-sidebar-label" data-lyric-slot="shuffle">Random Shuffle</p>
               <h2>Guess the song</h2>
-              <p></p>
+              <p data-lyric-slot="instructions">Seventeen seconds from a mystery track in Heavy Rotation. Type its title or ask for a hint.</p>
             </aside>
 
             <div class="xp-game">
@@ -1135,14 +1135,14 @@
               <audio id="song-clue" preload="metadata" playsinline></audio>
 
               <form class="xp-form" id="guess-form">
-                <label for="song-answer">Song title:</label>
+                <label for="song-answer" data-lyric-slot="answerLabel">Song title:</label>
                 <div class="xp-answer-row">
-                  <input class="xp-input" id="song-answer" name="song-answer" type="text" autocomplete="off" spellcheck="false" placeholder="Type your answer…" />
-                  <button class="xp-submit" type="submit">Submit answer</button>
+                  <input class="xp-input" id="song-answer" name="song-answer" type="text" autocomplete="off" spellcheck="false" placeholder="Type your answer…" data-lyric-placeholder />
+                  <button class="xp-submit" type="submit" data-lyric-slot="submit">Submit answer</button>
                 </div>
                 <div class="xp-game-actions">
-                  <button class="xp-button" id="hint-button" type="button" disabled>💡 Ask for a hint</button>
-                  <button class="xp-button" id="next-song" type="button" disabled>⏭ Skip / next song</button>
+                  <button class="xp-button" id="hint-button" type="button" disabled data-lyric-slot="hint">💡 Ask for a hint</button>
+                  <button class="xp-button" id="next-song" type="button" disabled data-lyric-slot="skip">⏭ Skip / next song</button>
                 </div>
                 <p class="xp-hint" id="hint-message" aria-live="polite" hidden></p>
                 <p class="xp-message" id="guess-message" aria-live="polite">Status: assembling the mystery-song pool…</p>
@@ -1159,7 +1159,7 @@
     </section>
 
     <section class="playlist-zone" aria-labelledby="playlist-heading">
-      <h2 class="section-kicker" id="playlist-heading"><span>Choose your noise</span></h2>
+      <h2 class="section-kicker" id="playlist-heading"><span data-lyric-slot="section">Choose your noise</span></h2>
 
       <article class="playlist-window" id="heavy-rotation">
         <div class="window-bar">
@@ -1173,10 +1173,10 @@
             <a class="open-link" href="https://music.apple.com/de/playlist/heavy-rotation/pl.pm-d5779e520ff52d7f27baa09ac519ba18?l=en" target="_blank" rel="noreferrer">Apple Music ↗</a>
           </div>
           <div class="player-frame">
-            <div class="loading" aria-live="polite">Loading audio data</div>
+            <div class="loading" aria-live="polite" data-lyric-slot="loading">Loading audio data</div>
             <iframe title="Heavy Rotation on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="eager" src="https://embed.music.apple.com/de/playlist/heavy-rotation/pl.pm-d5779e520ff52d7f27baa09ac519ba18?l=en-GB"></iframe>
           </div>
-          <div class="ticker" aria-hidden="true"><span>This is the one • this is the one • this is the oooooone • this is the one •</span></div>
+          <div class="ticker" aria-hidden="true"><span data-lyric-slot="heavyTicker">This is the one • this is the one • this is the oooooone • this is the one •</span></div>
         </div>
       </article>
 
@@ -1192,10 +1192,10 @@
             <a class="open-link" href="https://music.apple.com/de/playlist/your-essentials/pl.pm-d5779e520ff52d7feeb827d07e2d093b?l=en" target="_blank" rel="noreferrer">Apple Music ↗</a>
           </div>
           <div class="player-frame">
-            <div class="loading" aria-live="polite">Loading audio data</div>
+            <div class="loading" aria-live="polite" data-lyric-slot="loading">Loading audio data</div>
             <iframe title="Your Essentials on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="lazy" src="https://embed.music.apple.com/de/playlist/your-essentials/pl.pm-d5779e520ff52d7feeb827d07e2d093b?l=en-GB"></iframe>
           </div>
-          <div class="ticker" aria-hidden="true"><span>In many ways • we miss the gold ol' days • somday • someday •</span></div>
+          <div class="ticker" aria-hidden="true"><span data-lyric-slot="essentialsTicker">In many ways • we miss the gold ol' days • somday • someday •</span></div>
         </div>
       </article>
 
@@ -1211,17 +1211,17 @@
             <a class="open-link" href="https://music.apple.com/de/playlist/replay-all-time/pl.rp-OBC567B1WY?l=en" target="_blank" rel="noreferrer">Apple Music ↗</a>
           </div>
           <div class="player-frame">
-            <div class="loading" aria-live="polite">Loading audio data</div>
+            <div class="loading" aria-live="polite" data-lyric-slot="loading">Loading audio data</div>
             <iframe title="Replay All Time on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="lazy" src="https://embed.music.apple.com/de/playlist/replay-all-time/pl.rp-OBC567B1WY?l=en-GB"></iframe>
           </div>
-          <div class="ticker" aria-hidden="true"><span>I kinda miss the 9 to 5 • do not think that you can hide • i scramble fight just like a child • yeah yeeaaaaahhhh •</span></div>
+          <div class="ticker" aria-hidden="true"><span data-lyric-slot="replayTicker">I kinda miss the 9 to 5 • do not think that you can hide • i scramble fight just like a child • yeah yeeaaaaahhhh •</span></div>
         </div>
       </article>
     </section>
 
     <footer class="end-screen">
       <p>ARYAN AGARWALA</p>
-      <a class="end-link" href="index.html">Return to Home Page↗</a>
+      <a class="end-link" href="index.html" data-lyric-slot="home">Return to Home Page↗</a>
     </footer>
   </main>
 
@@ -1235,11 +1235,12 @@
     <div class="win-popup-body">
       <div class="win-wordart">YOU WIN!</div>
       <div class="win-stars" aria-hidden="true">★ ★ ★</div>
-      <p id="win-copy">Correct. Your prize is this extremely advanced graphic.</p>
-      <button class="xp-button" id="win-ok" type="button">Next mystery song</button>
+      <p id="win-copy" data-lyric-slot="win">Correct. Your prize is this extremely advanced graphic.</p>
+      <button class="xp-button" id="win-ok" type="button" data-lyric-slot="next">Next mystery song</button>
     </div>
   </div>
 
+  <script src="music-copy.js"></script>
   <script>
     (function () {
       const clock = document.getElementById('clock');
@@ -1263,6 +1264,8 @@
       const closeWinPopup = document.getElementById('close-win-popup');
       const winOk = document.getElementById('win-ok');
       const confettiLayer = document.getElementById('confetti-layer');
+      const themeSlots = (window.musicCopy && window.musicCopy.slots) || {};
+      const themeMessages = (window.musicCopy && window.musicCopy.messages) || {};
       const clueDurationSeconds = 17;
       const clueDurationMilliseconds = clueDurationSeconds * 1000;
       const appleSearchUrl = 'https://itunes.apple.com/search';
@@ -1579,7 +1582,9 @@
           } else {
             document.body.setAttribute('data-palette', 'hot');
           }
-          paletteButton.textContent = hot ? 'Color shift' : 'Cool it down';
+          paletteButton.textContent = hot ?
+            (themeMessages.paletteOff || 'Color shift') :
+            (themeMessages.paletteOn || 'Cool it down');
         });
       }
 
@@ -1704,7 +1709,8 @@
           playClueButton.textContent = '▶ Try loading clue again';
           if (guessMessage) {
             guessMessage.classList.add('is-wrong');
-            guessMessage.textContent = 'Audio failed to load. The internet has betrayed us.';
+            guessMessage.textContent = themeMessages.audioFailure ||
+              'Audio failed to load. The internet has betrayed us.';
           }
         });
       }
@@ -2016,7 +2022,7 @@
         }
         if (hintButton) {
           hintButton.disabled = false;
-          hintButton.textContent = '💡 Ask for a hint';
+          hintButton.textContent = themeSlots.hint || '💡 Ask for a hint';
         }
         if (nextSongButton) nextSongButton.disabled = false;
         if (trackLink) {
@@ -2025,7 +2031,8 @@
         }
         if (guessMessage) {
           guessMessage.classList.remove('is-wrong');
-          guessMessage.textContent = 'New mystery song selected. Press play when ready.';
+          guessMessage.textContent = themeMessages.ready ||
+            'New mystery song selected. Press play when ready.';
         }
       }
 
@@ -2052,7 +2059,8 @@
           clueIsPlaying = false;
           if (guessMessage) {
             guessMessage.classList.add('is-wrong');
-            guessMessage.textContent = 'That preview failed. Skipping to another mystery song…';
+            guessMessage.textContent = themeMessages.previewFailure ||
+              'That preview failed. Skipping to another mystery song…';
           }
           window.setTimeout(nextTrack, 850);
         });
@@ -2082,7 +2090,7 @@
         launchConfetti();
         if (guessMessage) {
           guessMessage.classList.remove('is-wrong');
-          guessMessage.textContent = 'CORRECT!';
+          guessMessage.textContent = themeMessages.correct || 'CORRECT!';
         }
         if (winCopy && currentTrack) {
           winCopy.textContent = 'Correct: “' + currentTrack.trackName + '” by ' +
@@ -2121,8 +2129,8 @@
           if (guessMessage) {
             guessMessage.classList.add('is-wrong');
             guessMessage.textContent = answer ?
-              'WRONG SONG. The computer is disappointed. Try again.' :
-              'Please type something first. Telepathy is not installed.';
+              (themeMessages.wrong || 'WRONG SONG. The computer is disappointed. Try again.') :
+              (themeMessages.empty || 'Please type something first. Telepathy is not installed.');
           }
           if (gameWindow) {
             gameWindow.classList.remove('shake');
@@ -2138,7 +2146,8 @@
         gameClose.addEventListener('click', function () {
           if (guessMessage) {
             guessMessage.classList.add('is-wrong');
-            guessMessage.textContent = 'Nice try. GuessTheSong.exe cannot be closed.';
+            guessMessage.textContent = themeMessages.cannotClose ||
+              'Nice try. GuessTheSong.exe cannot be closed.';
           }
           if (gameWindow) {
             gameWindow.classList.remove('shake');
@@ -2161,7 +2170,8 @@
         }
         if (guessMessage) {
           guessMessage.classList.add('is-wrong');
-          guessMessage.textContent = 'Heavy Rotation did not load. Check your connection and refresh.';
+          guessMessage.textContent = themeMessages.catalogFailure ||
+            'Heavy Rotation did not load. Check your connection and refresh.';
         }
       });
 
