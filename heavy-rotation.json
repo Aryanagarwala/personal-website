@@ -48,8 +48,53 @@
       "artist": "The Voidz"
     },
     {
-      "id": "1337791435",
-      "title": "Wink",
+      "id": "1337791406",
+      "title": "All Wordz Are Made Up",
+      "artist": "The Voidz"
+    },
+    {
+      "id": "1891161453",
+      "title": "The Fruits of Conquest",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "1891161449",
+      "title": "Going to Babble On",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "299740914",
+      "title": "Fear of Sleep",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "299740798",
+      "title": "Killing Lies",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "299740757",
+      "title": "Electricityscape",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "299740653",
+      "title": "Vision of Division",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "299740716",
+      "title": "Ask Me Anything",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "1891161454",
+      "title": "Tyrants of the Mellow Moon",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "1337791260",
+      "title": "Permanent High School",
       "artist": "The Voidz"
     },
     {
@@ -73,41 +118,6 @@
       "artist": "The Strokes"
     },
     {
-      "id": "1891161454",
-      "title": "Tyrants of the Mellow Moon",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "1337791260",
-      "title": "Permanent High School",
-      "artist": "The Voidz"
-    },
-    {
-      "id": "1337791406",
-      "title": "All Wordz Are Made Up",
-      "artist": "The Voidz"
-    },
-    {
-      "id": "1891161453",
-      "title": "The Fruits of Conquest",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "1891161449",
-      "title": "Going to Babble On",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "299740757",
-      "title": "Electricityscape",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "299740653",
-      "title": "Vision of Division",
-      "artist": "The Strokes"
-    },
-    {
       "id": "299740632",
       "title": "On the Other Side",
       "artist": "The Strokes"
@@ -116,16 +126,6 @@
       "id": "299740984",
       "title": "15 Minutes",
       "artist": "The Strokes"
-    },
-    {
-      "id": "299740716",
-      "title": "Ask Me Anything",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "1337791436",
-      "title": "My Friend the Walls",
-      "artist": "The Voidz"
     }
   ]
 }
