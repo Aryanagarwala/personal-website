@@ -686,6 +686,10 @@
         type: 'Informal Publications',
         ee: 'https://arxiv.org/abs/2611.05956'
       }];
+      // Exact publication dates break ties within a year, including after DBLP indexing.
+      const publicationDatesByTitle = {
+        'the complexity of unpredictability': '2026-11-04'
+      };
       const query = 'author:Aryan_Agarwala:';
       const callbackName = '__aryanDblp_' + Date.now().toString(36);
       const endpoint = 'https://dblp.org/search/publ/api' +
@@ -888,6 +892,11 @@
         groups.sort(function (a, b) {
           const yearDifference = b.year - a.year;
           if (yearDifference) return yearDifference;
+          const dateFor = function (group) {
+            return publicationDatesByTitle[normalizeTitle(group.display.title)] || group.year + '-01-01';
+          };
+          const dateDifference = dateFor(b).localeCompare(dateFor(a));
+          if (dateDifference) return dateDifference;
           return normalizeTitle(a.display.title).localeCompare(normalizeTitle(b.display.title));
         });
 
