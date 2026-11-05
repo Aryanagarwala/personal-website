@@ -660,6 +660,10 @@
       // Verified recordings and seminar pages. Keep this small, explicit index rather than
       // relying on a third-party search endpoint that browsers commonly block with CORS.
       const talksByTitle = {
+        'the complexity of unpredictability': [{
+          url: 'https://simons.berkeley.edu/talks/aryan-agarwala-max-planck-institute-informatics-2026-10-27',
+          speaker: 'Aryan Agarwala'
+        }],
         'linear matroid intersection is in catalytic logspace': [{
           url: 'https://youtu.be/O1MoqXD7Icg',
           speaker: 'Aryan Agarwala'
@@ -673,6 +677,15 @@
           speaker: 'Ian Mertz'
         }]
       };
+      // Papers not yet indexed by DBLP; merge into both cached and live responses.
+      const supplementalPublications = [{
+        title: 'The Complexity of Unpredictability',
+        authors: { author: ['Aryan Agarwala', 'Dani Dorfman'] },
+        year: '2026',
+        venue: 'CoRR',
+        type: 'Informal Publications',
+        ee: 'https://arxiv.org/abs/2611.05956'
+      }];
       const query = 'author:Aryan_Agarwala:';
       const callbackName = '__aryanDblp_' + Date.now().toString(36);
       const endpoint = 'https://dblp.org/search/publ/api' +
@@ -1025,6 +1038,12 @@
       function render(payload) {
         const records = recordsFromPayload(payload);
         if (!records) throw new Error('dblp returned invalid publication data');
+        supplementalPublications.forEach(function (supplement) {
+          const alreadyIndexed = records.some(function (record) {
+            return samePaper(record, supplement) && isPreprint(record);
+          });
+          if (!alreadyIndexed) records.push(supplement);
+        });
         const groups = groupRecords(records);
 
         list.innerHTML = '';
