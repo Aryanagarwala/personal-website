@@ -13,7 +13,7 @@
       --muted: #6c6c68;
       --line: #e8e6e1;
       --accent: #1f3a5f;
-      --maxw: 1040px;
+      --maxw: 1360px;
     }
 
     * { box-sizing: border-box; }
@@ -44,7 +44,7 @@
     }
 
     .container {
-      width: min(calc(100% - 2.5rem), var(--maxw));
+      width: min(calc(100% - 4rem), var(--maxw));
       margin: 0 auto;
     }
 
@@ -86,8 +86,8 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 3rem;
+      grid-template-columns: minmax(520px, 620px) 1fr;
+      gap: 4rem;
       align-items: start;
     }
 
@@ -99,7 +99,7 @@
 
     .portrait img {
       width: 100%;
-      aspect-ratio: 4 / 5;
+      aspect-ratio: 3 / 2;
       object-fit: cover;
     }
 
@@ -387,7 +387,7 @@
 
     .hobby img {
       width: 100%;
-      aspect-ratio: 16 / 10;
+      aspect-ratio: 16 / 9;
       object-fit: cover;
     }
 
@@ -441,6 +441,13 @@
       align-items: center;
     }
 
+    @media (max-width: 1200px) {
+      .hero-grid {
+        grid-template-columns: 480px 1fr;
+        gap: 3rem;
+      }
+    }
+
     @media (max-width: 900px) {
       .hero-grid,
       .section-grid,
@@ -468,6 +475,18 @@
       .container {
         width: min(calc(100% - 1.5rem), var(--maxw));
       }
+
+      .hero-grid {
+        gap: 2rem;
+      }
+
+      .portrait {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        padding: 0;
+        border-right: 0;
+        border-left: 0;
+      }
     }
   </style>
 </head>
@@ -492,7 +511,7 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="portrait">
-          <img src="/aryanagarwala-hiking.png" alt="Aryan Agarwala hiking on a nature trail" />
+          <img src="/aryanagarwala-seagull.png" alt="Aryan Agarwala beside a seagull by the water" />
         </div>
         <div>
           <p class="eyebrow">Algorithms and Complexity · Saarbrucken</p>
@@ -608,9 +627,9 @@
               </div>
             </a>
             <article class="hobby">
-              <img src="https://www.mpi-inf.mpg.de/fileadmin/_processed_/a/1/csm_IMG_2924_ab317ff623.jpg" alt="Football at Old Trafford" />
+              <img src="/old-trafford-green-and-gold.png" alt="Old Trafford with green and gold Manchester United signage" />
               <div class="hobby-copy">
-                <div class="item-title">Football</div>
+                <div class="item-title">Green and Gold Until the Club Is Sold</div>
               </div>
             </article>
           </div>
