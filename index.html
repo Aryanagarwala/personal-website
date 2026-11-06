@@ -13,7 +13,8 @@
       --muted: #6c6c68;
       --line: #e8e6e1;
       --accent: #1f3a5f;
-      --maxw: 1360px;
+      --maxw: 1040px;
+      --hero-maxw: 1360px;
     }
 
     * { box-sizing: border-box; }
@@ -44,8 +45,13 @@
     }
 
     .container {
-      width: min(calc(100% - 4rem), var(--maxw));
+      width: min(calc(100% - 2.5rem), var(--maxw));
       margin: 0 auto;
+    }
+
+    .site-header .container,
+    .hero .container {
+      width: min(calc(100% - 4rem), var(--hero-maxw));
     }
 
     .site-header {
@@ -387,7 +393,7 @@
 
     .hobby img {
       width: 100%;
-      aspect-ratio: 16 / 9;
+      aspect-ratio: 3 / 2;
       object-fit: cover;
     }
 
@@ -474,6 +480,11 @@
 
       .container {
         width: min(calc(100% - 1.5rem), var(--maxw));
+      }
+
+      .site-header .container,
+      .hero .container {
+        width: min(calc(100% - 1.5rem), var(--hero-maxw));
       }
 
       .hero-grid {
@@ -627,7 +638,7 @@
               </div>
             </a>
             <article class="hobby">
-              <img src="/old-trafford-green-and-gold.png" alt="Old Trafford with green and gold Manchester United signage" />
+              <img src="/old-trafford-green-and-gold-crop.png" alt="Old Trafford with green and gold Manchester United signage" />
               <div class="hobby-copy">
                 <div class="item-title">Green and Gold Until the Club Is Sold</div>
               </div>
