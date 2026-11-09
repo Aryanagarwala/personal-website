@@ -1,0 +1,10 @@
+{
+  "name": "aryan-personal-website",
+  "private": true,
+  "scripts": {
+    "build:publications": "node scripts/render-publications.mjs"
+  },
+  "devDependencies": {
+    "linkedom": "0.18.15"
+  }
+}

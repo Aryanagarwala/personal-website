@@ -7,6 +7,7 @@ on:
 
 permissions:
   contents: write
+  pages: write
 
 concurrency:
   group: refresh-site-caches
@@ -19,22 +20,42 @@ jobs:
       - name: Check out the site
         uses: actions/checkout@v4
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install publication renderer
+        run: npm ci --ignore-scripts
+
       - name: Download and validate DBLP data
         continue-on-error: true
         run: node scripts/refresh-dblp-cache.mjs
+
+      - name: Render publications into the homepage
+        run: npm run build:publications
 
       - name: Download and validate music playlists
         continue-on-error: true
         run: node scripts/refresh-heavy-rotation.mjs
 
       - name: Commit changed caches
+        id: update
         run: |
-          if git diff --quiet -- dblp-cache.json heavy-rotation.json your-essentials.json; then
+          if git diff --quiet -- index.html dblp-cache.json heavy-rotation.json your-essentials.json; then
             echo "Cached data has not changed."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dblp-cache.json heavy-rotation.json your-essentials.json
+          git add index.html dblp-cache.json heavy-rotation.json your-essentials.json
           git commit -m "Refresh site caches"
           git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Publish refreshed pages
+        if: steps.update.outputs.changed == 'true' || github.event_name == 'workflow_dispatch'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
