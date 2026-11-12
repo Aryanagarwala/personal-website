@@ -569,12 +569,7 @@
             <a href="https://www.mpi-inf.mpg.de/departments/algorithms-complexity/people/current-members/danupon-na-nongkai" target="_blank" rel="noreferrer">Prof. Danupon Nanongkai</a>.
           </p>
           <div class="hero-actions">
-            <a class="button" href="#research">Research</a>
-            <a class="button" href="#publications">Publications</a>
-            <a class="button" href="#education">Education</a>
-            <a class="button" href="#teaching">Teaching</a>
-            <a class="button" href="#hobbies">Hobbies</a>
-            <a class="button primary" href="#contact">Contact</a>
+            <a class="button primary" id="contact-link" href="#contact">Contact</a>
           </div>
           <div class="hero-meta">
             <div class="meta-block">
@@ -724,10 +719,12 @@
     (function () {
       const email = ['aryan', 'agarwalas dot in'].join(' at ');
       const emailLink = document.getElementById('email-link');
+      const contactLink = document.getElementById('contact-link');
       if (emailLink) {
         emailLink.href = 'mailto:' + email;
         emailLink.textContent = email;
       }
+      if (contactLink) contactLink.href = 'mailto:aryan@agarwalas.in';
       const list = document.getElementById('dblp-publications');
       if (!list) return;
 
