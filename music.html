@@ -1069,7 +1069,7 @@
     <div class="topbar-left">
       <a class="home-link" href="index.html#hobbies">← Eject</a>
       <span class="status-light" aria-hidden="true"></span>
-      <span>Aryan Music System v.2.001</span>
+      <span>Aryan's Music XP Version 01</span>
     </div>
     <div class="topbar-right">
       <button class="palette-button" id="palette-button" type="button">Color shift</button>
@@ -1079,14 +1079,14 @@
 
   <main>
     <section class="hero" aria-labelledby="page-title">
-      <p class="boot-line">MUSIC MUSIC MUSIC MUSIC</p>
+      <!--<p class="boot-line">MUSIC MUSIC MUSIC MUSIC</p>-->
       <h1 id="page-title" aria-label="Music">Music</h1>
 
       <div class="hero-copy">
         <p class="intro">
-          Explore my playlists and play a fun mini-game.
+          Check out my playlists and play a fun guessing game.
         </p>
-        <div class="sticker" aria-hidden="true">IS<br />THIS<br />IIIITTTT</div>
+        <div class="sticker" aria-hidden="true">IS<br />THIS<br />IT?</div>
       </div>
 
       <nav class="desktop-nav" aria-label="Choose a playlist">
@@ -1110,7 +1110,7 @@
 
     <section class="game-zone" aria-labelledby="guess-game-heading">
       <div class="game-shell">
-        <h2 class="game-heading" id="guess-game-heading">Mini Game Arcade</h2>
+        <h2 class="game-heading" id="guess-game-heading">GUESS THE SONG</h2>
 
         <div class="xp-window" id="guess-song-game">
           <div class="xp-titlebar">
@@ -1120,9 +1120,9 @@
 
           <div class="xp-body">
             <aside class="xp-sidebar">
-              <p class="xp-sidebar-label">Random Shuffle</p>
+              <!--<p class="xp-sidebar-label">Random Shuffle</p>-->
               <h2>Guess the song</h2>
-              <p>17-second clues from Heavy Rotation and Your Essentials. Guess the title or ask for an artist hint.</p>
+              <p>17-second clues from the Heavy Rotation and Your Essentials playlists. Guess the title or ask for an artist hint.</p>
             </aside>
 
             <div class="xp-game">
@@ -1157,7 +1157,7 @@
               </form>
 
               <p class="xp-attribution">
-                30-second preview supplied by Apple Music ·
+
                 <a id="track-link" href="https://music.apple.com/" target="_blank" rel="noreferrer" hidden>open track ↗</a>
               </p>
             </div>
@@ -1167,7 +1167,7 @@
     </section>
 
     <section class="playlist-zone" aria-labelledby="playlist-heading">
-      <h2 class="section-kicker" id="playlist-heading"><span>Choose your noise</span></h2>
+      <h2 class="section-kicker" id="playlist-heading"><span>Playlists</span></h2>
 
       <article class="playlist-window" id="heavy-rotation">
         <div class="window-bar">
@@ -1639,7 +1639,7 @@
         renderClueProgress(0);
         playClueButton.disabled = !currentTrack;
         playClueButton.setAttribute('aria-pressed', 'false');
-        playClueButton.textContent = currentTrack ? '▶ Play 17-second clue' : 'Loading Apple previews…';
+        playClueButton.textContent = currentTrack ? '▶ Play the clue' : 'Loading Apple previews…';
       }
 
       function finishClue() {
@@ -2150,8 +2150,8 @@
           if (guessMessage) {
             guessMessage.classList.add('is-wrong');
             guessMessage.textContent = answer ?
-              'WRONG SONG. The computer is disappointed. Try again.' :
-              'Please type something first. Telepathy is not installed.';
+              'WRONG SONG. That was poor, even by your standards.' :
+              'You gotta type something in the box, genius.';
           }
           if (gameWindow) {
             gameWindow.classList.remove('shake');
@@ -2167,7 +2167,7 @@
         gameClose.addEventListener('click', function () {
           if (guessMessage) {
             guessMessage.classList.add('is-wrong');
-            guessMessage.textContent = 'Nice try. GuessTheSong.exe cannot be closed.';
+            guessMessage.textContent = 'Nice try dawg.';
           }
           if (gameWindow) {
             gameWindow.classList.remove('shake');
@@ -2181,16 +2181,18 @@
         nextTrack();
         if (guessMessage) {
           guessMessage.classList.remove('is-wrong');
-          guessMessage.textContent = count + ' playlist previews loaded. Mystery song selected.';
+          guessMessage.textContent = 'Ready to play.';
+          //guessMessage.textContent = count + ' playlist previews loaded. Mystery song selected.';
         }
       }).catch(function () {
         if (playClueButton) {
           playClueButton.disabled = true;
-          playClueButton.textContent = 'Preview catalogue unavailable';
+          playClueButton.textContent = 'Unavailable';
         }
         if (guessMessage) {
           guessMessage.classList.add('is-wrong');
-          guessMessage.textContent = 'Playlist previews did not load. Check your connection and refresh.';
+          guessMessage.textContent = 'Beep boop, game failed to load. Check your connection and refresh.';
+          //guessMessage.textContent = 'Playlist previews did not load. Check your connection and refresh.';
         }
       });
 
