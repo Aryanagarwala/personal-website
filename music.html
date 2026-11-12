@@ -1110,7 +1110,7 @@
 
     <section class="game-zone" aria-labelledby="guess-game-heading">
       <div class="game-shell">
-        <h2 class="game-heading" id="guess-game-heading">GUESS THE SONG</h2>
+        <h2 class="game-heading" id="guess-game-heading">ARCADE</h2>
 
         <div class="xp-window" id="guess-song-game">
           <div class="xp-titlebar">
@@ -1122,7 +1122,7 @@
             <aside class="xp-sidebar">
               <!--<p class="xp-sidebar-label">Random Shuffle</p>-->
               <h2>Guess the song</h2>
-              <p>17-second clues from the Heavy Rotation and Your Essentials playlists. Guess the title or ask for an artist hint.</p>
+              <p>Here is a randomly selected song from my playlists. Guess the title or ask for a hint.</p>
             </aside>
 
             <div class="xp-game">
@@ -1149,7 +1149,7 @@
                   <button class="xp-submit" type="submit">Submit answer</button>
                 </div>
                 <div class="xp-game-actions">
-                  <button class="xp-button" id="hint-button" type="button" disabled>💡 Ask for a hint</button>
+                  <button class="xp-button" id="hint-button" type="button" disabled>💡 Hint: The artist is...</button>
                   <button class="xp-button" id="next-song" type="button" disabled>⏭ Skip / next song</button>
                 </div>
                 <p class="xp-hint" id="hint-message" aria-live="polite" hidden></p>
@@ -1184,7 +1184,7 @@
             <div class="loading" aria-live="polite">Loading audio data</div>
             <iframe title="Heavy Rotation on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="eager" src="https://embed.music.apple.com/de/playlist/heavy-rotation/pl.pm-d5779e520ff52d7f27baa09ac519ba18?l=en-GB"></iframe>
           </div>
-          <div class="ticker" aria-hidden="true"><span>This is the one • this is the one • this is the oooooone • this is the one •</span></div>
+          <div class="ticker" aria-hidden="true"><span>I had her on a promise • immerse me in your splendor! • All the plans that I have made • This is the one •</span></div>
         </div>
       </article>
 
@@ -1203,7 +1203,7 @@
             <div class="loading" aria-live="polite">Loading audio data</div>
             <iframe title="Your Essentials on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="lazy" src="https://embed.music.apple.com/de/playlist/your-essentials/pl.pm-d5779e520ff52d7feeb827d07e2d093b?l=en-GB"></iframe>
           </div>
-          <div class="ticker" aria-hidden="true"><span>In many ways • we miss the gold ol' days • somday • someday •</span></div>
+          <div class="ticker" aria-hidden="true"><span>In many ways • we miss the good ol' days • someday • someday •</span></div>
         </div>
       </article>
 
@@ -1222,7 +1222,7 @@
             <div class="loading" aria-live="polite">Loading audio data</div>
             <iframe title="Replay All Time on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="lazy" src="https://embed.music.apple.com/de/playlist/replay-all-time/pl.rp-OBC567B1WY?l=en-GB"></iframe>
           </div>
-          <div class="ticker" aria-hidden="true"><span>I kinda miss the 9 to 5 • do not think that you can hide • i scramble fight just like a child • yeah yeeaaaaahhhh •</span></div>
+          <div class="ticker" aria-hidden="true"><span>No time to apologize • fury to tranquilize • weapons to synchronize • cities to vapori- •</span></div>
         </div>
       </article>
     </section>
@@ -2045,7 +2045,7 @@
         }
         if (hintButton) {
           hintButton.disabled = false;
-          hintButton.textContent = '💡 Ask for a hint';
+          hintButton.textContent = '💡 Hint: The artist is ...';
         }
         if (nextSongButton) nextSongButton.disabled = false;
         if (trackLink) {
