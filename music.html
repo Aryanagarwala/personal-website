@@ -1079,12 +1079,12 @@
 
   <main>
     <section class="hero" aria-labelledby="page-title">
-      <p class="boot-line">If you're into music, you're gonna hate this</p>
+      <p class="boot-line">A peek into my music collection and a fun guessing game.</p>
       <h1 id="page-title" aria-label="Music">Music</h1>
 
       <div class="hero-copy">
         <p class="intro">
-          Check out my playlists and play a fun guessing game.
+          If you're into music, you're gonna hate this.
         </p>
         <div class="sticker" aria-hidden="true">IS<br />THIS<br />IT?</div>
       </div>
@@ -1149,7 +1149,7 @@
                   <button class="xp-submit" type="submit">Submit answer</button>
                 </div>
                 <div class="xp-game-actions">
-                  <button class="xp-button" id="hint-button" type="button" disabled>💡 Hint: The artist is...</button>
+                  <button class="xp-button" id="hint-button" type="button" disabled>💡 Hint: The artist is…</button>
                   <button class="xp-button" id="next-song" type="button" disabled>⏭ Skip / next song</button>
                 </div>
                 <p class="xp-hint" id="hint-message" aria-live="polite" hidden></p>
@@ -1167,7 +1167,7 @@
     </section>
 
     <section class="playlist-zone" aria-labelledby="playlist-heading">
-      <h2 class="section-kicker" id="playlist-heading"><span>Playlists</span></h2>
+      <h2 class="section-kicker" id="playlist-heading"><span>My Playlists</span></h2>
 
       <article class="playlist-window" id="heavy-rotation">
         <div class="window-bar">
@@ -1184,7 +1184,7 @@
             <div class="loading" aria-live="polite">Loading audio data</div>
             <iframe title="Heavy Rotation on Apple Music" allow="autoplay *; encrypted-media *; fullscreen *; clipboard-write" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" loading="eager" src="https://embed.music.apple.com/de/playlist/heavy-rotation/pl.pm-d5779e520ff52d7f27baa09ac519ba18?l=en-GB"></iframe>
           </div>
-          <div class="ticker" aria-hidden="true"><span>I had her on a promise • immerse me in your splendor! • All the plans that I have made • This is the one •</span></div>
+          <div class="ticker" aria-hidden="true"><span>I had her on a promise • immerse me in your splendour! • All the plans that I have made • This is the one •</span></div>
         </div>
       </article>
 
@@ -1229,7 +1229,7 @@
 
     <footer class="end-screen">
       <p>ARYAN AGARWALA</p>
-      <a class="end-link" href="index.html">Return to Home Page↗</a>
+      <a class="end-link" href="index.html">Return to Home Page ↗</a>
     </footer>
   </main>
 
@@ -2045,7 +2045,7 @@
         }
         if (hintButton) {
           hintButton.disabled = false;
-          hintButton.textContent = '💡 Hint: The artist is ...';
+          hintButton.textContent = '💡 Hint: The artist is…';
         }
         if (nextSongButton) nextSongButton.disabled = false;
         if (trackLink) {
@@ -2054,7 +2054,7 @@
         }
         if (guessMessage) {
           guessMessage.classList.remove('is-wrong');
-          guessMessage.textContent = 'New mystery song selected. Press play when ready.';
+          guessMessage.textContent = 'New secret song selected.';
         }
       }
 
