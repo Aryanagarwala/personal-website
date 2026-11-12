@@ -2,7 +2,9 @@
   "name": "aryan-personal-website",
   "private": true,
   "scripts": {
-    "build:publications": "node scripts/render-publications.mjs"
+    "build:publications": "node scripts/render-publications.mjs",
+    "build:sitemap": "node scripts/build-sitemap.mjs",
+    "test:sitemap": "node --test scripts/build-sitemap.test.mjs"
   },
   "devDependencies": {
     "linkedom": "0.18.15"

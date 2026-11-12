@@ -10,8 +10,8 @@ permissions:
   pages: write
 
 concurrency:
-  group: refresh-site-caches
-  cancel-in-progress: true
+  group: site-maintenance
+  cancel-in-progress: false
 
 jobs:
   refresh:
@@ -19,6 +19,9 @@ jobs:
     steps:
       - name: Check out the site
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -40,16 +43,19 @@ jobs:
         continue-on-error: true
         run: node scripts/refresh-heavy-rotation.mjs
 
+      - name: Update sitemap dates for changed page content
+        run: npm run build:sitemap -- --include-working-tree
+
       - name: Commit changed caches
         id: update
         run: |
-          if git diff --quiet -- index.html dblp-cache.json heavy-rotation.json your-essentials.json; then
+          if git diff --quiet -- index.html dblp-cache.json heavy-rotation.json your-essentials.json sitemap.xml; then
             echo "Cached data has not changed."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html dblp-cache.json heavy-rotation.json your-essentials.json
+          git add index.html dblp-cache.json heavy-rotation.json your-essentials.json sitemap.xml
           git commit -m "Refresh site caches"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"

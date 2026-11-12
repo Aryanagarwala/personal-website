@@ -1,0 +1,57 @@
+name: Update sitemap
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+# Serialize with cache refreshes so automated commits do not race each other.
+concurrency:
+  group: site-maintenance
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the latest site with its modification history
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Test sitemap generation
+        run: npm run test:sitemap
+
+      - name: Generate sitemap from actual content changes
+        run: npm run build:sitemap
+
+      - name: Save updated sitemap
+        id: sitemap
+        run: |
+          if git diff --quiet -- sitemap.xml; then
+            echo "Sitemap is already up to date."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Update sitemap modification dates"
+          git push
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+
+      # A commit made with GITHUB_TOKEN does not trigger a Pages build itself.
+      - name: Publish updated sitemap
+        if: steps.sitemap.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api --method POST "repos/$GITHUB_REPOSITORY/pages/builds"
