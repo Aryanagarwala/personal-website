@@ -38,11 +38,6 @@
       "artist": "The Strokes"
     },
     {
-      "id": "601140643",
-      "title": "Partners In Crime",
-      "artist": "The Strokes"
-    },
-    {
       "id": "601140642",
       "title": "Slow Animals",
       "artist": "The Strokes"
@@ -55,11 +50,6 @@
     {
       "id": "269080525",
       "title": "Someday",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "581797964",
-      "title": "Machu Picchu",
       "artist": "The Strokes"
     },
     {
@@ -88,11 +78,6 @@
       "artist": "The Strokes"
     },
     {
-      "id": "299740757",
-      "title": "Electricityscape",
-      "artist": "The Strokes"
-    },
-    {
       "id": "302987576",
       "title": "Meet Me in the Bathroom",
       "artist": "The Strokes"
@@ -101,6 +86,16 @@
       "id": "269080636",
       "title": "Trying Your Luck",
       "artist": "The Strokes"
+    },
+    {
+      "id": "581797964",
+      "title": "Machu Picchu",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "1109715309",
+      "title": "Reckoner",
+      "artist": "Radiohead"
     },
     {
       "id": "1478664356",
@@ -113,8 +108,8 @@
       "artist": "The Strokes"
     },
     {
-      "id": "581797973",
-      "title": "Life Is Simple In the Moonlight",
+      "id": "299740716",
+      "title": "Ask Me Anything",
       "artist": "The Strokes"
     },
     {
@@ -123,8 +118,13 @@
       "artist": "The Strokes"
     },
     {
-      "id": "299740716",
-      "title": "Ask Me Anything",
+      "id": "1109715469",
+      "title": "Jigsaw Falling Into Place",
+      "artist": "Radiohead"
+    },
+    {
+      "id": "581797973",
+      "title": "Life Is Simple In the Moonlight",
       "artist": "The Strokes"
     }
   ]
