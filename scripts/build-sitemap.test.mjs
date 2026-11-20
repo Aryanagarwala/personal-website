@@ -1,97 +1,75 @@
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdtempSync, readFileSync, rmSync, statSync, utimesSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { test } from 'node:test';
-import { buildSitemap, buildSitemaps } from './build-sitemap.mjs';
+import { buildSitemap } from './build-sitemap.mjs';
 
-const now = '2026-11-12T12:00:00Z';
+const expected = 'https://aryan.agarwalas.in/\nhttps://aryan.agarwalas.in/music.html\n';
+const script = fileURLToPath(new URL('./build-sitemap.mjs', import.meta.url));
 function fixture(t) {
   const root = mkdtempSync(join(tmpdir(), 'website-sitemap-test-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] }).trim();
-  git('init');
-  git('config', 'user.name', 'Sitemap Test');
-  git('config', 'user.email', 'sitemap-test@example.invalid');
-  git('config', 'commit.gpgsign', 'false');
   const write = (file, contents) => writeFileSync(join(root, file), contents);
-  const commit = (date, message = 'Fixture content') => {
-    git('add', '.');
-    execFileSync('git', ['commit', '-m', message], {
-      cwd: root, stdio: 'pipe',
-      env: { ...process.env, GIT_AUTHOR_DATE: date, GIT_COMMITTER_DATE: date },
-    });
-  };
-  mkdirSync(join(root, 'scripts'));
   write('index.html', '<link rel="canonical" href="https://aryan.agarwalas.in/">');
-  write('music.html', '<link href="https://aryan.agarwalas.in/music.html" rel="canonical">');
-  write('scripts/publications.js', '// Publications');
-  write('aryanagarwala-seagull.png', 'Image fixture');
-  write('heavy-rotation.json', '[]');
-  write('your-essentials.json', '[]');
-  commit('2026-11-01T10:00:00Z');
-  return { root, git, write, commit, build: options => buildSitemap({ root, now, ...options }) };
+  write('music.html', "<link href='https://aryan.agarwalas.in/music.html' rel='canonical'>");
+  return { root, write, build: () => buildSitemap({ root }) };
 }
 
-test('uses independent page dates and ignores unrelated commits and repeated builds', t => {
+test('generates exactly two absolute canonical URLs without requiring Git history', t => {
   const f = fixture(t);
-  f.write('scripts/publications.js', '// Updated publications');
-  f.commit('2026-11-05T11:00:00+01:00');
-  f.write('your-essentials.json', '["New song"]');
-  f.commit('2026-11-06T08:00:00Z');
-  const xml = f.build();
-  assert.match(xml, /<loc>https:\/\/aryan\.agarwalas\.in\/<\/loc>\s*<lastmod>2026-11-05T10:00:00Z<\/lastmod>/);
-  assert.match(xml, /<loc>https:\/\/aryan\.agarwalas\.in\/music\.html<\/loc>\s*<lastmod>2026-11-06T08:00:00Z<\/lastmod>/);
-  assert.ok(xml.startsWith('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'));
-  assert.ok(xml.endsWith('</urlset>\n'));
-  f.write('README.md', 'Unrelated documentation');
-  f.commit('2026-11-10T10:00:00Z');
-  assert.equal(f.build(), xml);
-  assert.equal(f.build({ now: '2026-11-20T12:00:00Z' }), xml);
-});
-
-test('working-tree mode updates only a page with relevant changed files', t => {
-  const f = fixture(t);
-  const original = f.build();
-  f.write('README.md', 'Unrelated pending changes');
-  assert.equal(f.build({ includeWorkingTree: true }), original);
-  f.write('heavy-rotation.json', '["Pending song"]');
-  assert.equal(f.build(), original);
-  const changed = f.build({ includeWorkingTree: true });
-  assert.match(changed, /<loc>https:\/\/aryan\.agarwalas\.in\/<\/loc>\s*<lastmod>2026-11-01T10:00:00Z<\/lastmod>/);
-  assert.match(changed, /<loc>https:\/\/aryan\.agarwalas\.in\/music\.html<\/loc>\s*<lastmod>2026-11-12T12:00:00Z<\/lastmod>/);
-  f.git('add', 'heavy-rotation.json');
-  assert.equal(f.build({ includeWorkingTree: true }), changed);
-});
-
-test('rejects absent, duplicate, and incorrect canonical URLs', t => {
-  const f = fixture(t);
-  const original = readFileSync(join(f.root, 'index.html'), 'utf8');
-  for (const html of ['', original + original, original.replace('https:', 'http:')]) {
-    f.write('index.html', html);
-    assert.throws(() => f.build(), /exactly one canonical URL/);
+  assert.equal(f.build(), expected);
+  assert.equal(existsSync(join(f.root, '.git')), false);
+  for (const line of f.build().trim().split('\n')) {
+    const url = new URL(line);
+    assert.equal(url.origin, 'https://aryan.agarwalas.in');
+    assert.equal(url.hash, '');
   }
 });
 
-test('rejects invalid current time and future content dates', t => {
+test('content updates and unrelated files do not change the URL list', t => {
   const f = fixture(t);
-  assert.throws(() => f.build({ now: 'invalid' }), /Invalid current timestamp/);
-  assert.throws(() => f.build({ now: '2026-10-01T00:00:00Z' }), /future timestamp/);
+  f.write('index.html', readFileSync(join(f.root, 'index.html'), 'utf8') + '<p>Updated biography</p>');
+  f.write('README.md', 'Unrelated documentation');
+  assert.equal(f.build(), expected);
+  assert.equal(f.build(), expected);
 });
 
-test('rejects shallow history', t => {
+test('rejects missing, duplicate, insecure, incorrect, and data-attribute canonicals', t => {
   const f = fixture(t);
-  f.write('.git/shallow', f.git('rev-parse', 'HEAD') + '\n');
-  assert.throws(() => f.build(), /complete Git history/);
+  for (const file of ['index.html', 'music.html']) {
+    const original = readFileSync(join(f.root, file), 'utf8');
+    for (const html of [
+      '', original + original, original.replace('https:', 'http:'),
+      original.replace('aryan.agarwalas.in', 'wrong.example'),
+      original.replace('rel=', 'data-rel='), original.replace('href=', 'data-href='),
+    ]) {
+      f.write(file, html);
+      assert.throws(() => f.build(), /exactly one canonical URL/);
+    }
+    f.write(file, original);
+  }
 });
 
-test('text and XML sitemaps contain exactly the same validated canonical URLs', t => {
+test('CLI creates only sitemap.txt and leaves an unchanged output untouched', t => {
   const f = fixture(t);
-  const { xml, text } = buildSitemaps({ root: f.root, now });
-  assert.equal(text, 'https://aryan.agarwalas.in/\nhttps://aryan.agarwalas.in/music.html\n');
-  const xmlUrls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
-  assert.deepEqual(text.trim().split('\n'), xmlUrls);
-  f.write('music.html', '<link rel="canonical" href="https://wrong.example/">');
-  assert.throws(() => buildSitemaps({ root: f.root, now }), /exactly one canonical URL/);
+  const run = () => execFileSync(process.execPath, [script], { cwd: f.root, encoding: 'utf8' });
+  run();
+  const output = join(f.root, 'sitemap.txt');
+  assert.equal(readFileSync(output, 'utf8'), expected);
+  assert.equal(existsSync(join(f.root, 'sitemap.xml')), false);
+  const earlier = new Date('2026-01-01T00:00:00Z');
+  utimesSync(output, earlier, earlier);
+  assert.match(run(), /already up to date/);
+  assert.equal(statSync(output).mtimeMs, earlier.getTime());
+});
+
+test('CLI rejects obsolete options rather than silently generating the wrong format', t => {
+  const f = fixture(t);
+  assert.throws(() => execFileSync(process.execPath, [script, '--include-working-tree'], {
+    cwd: f.root, stdio: 'pipe',
+  }), /Usage: node scripts\/build-sitemap.mjs/);
+  assert.equal(existsSync(join(f.root, 'sitemap.txt')), false);
 });

@@ -18,11 +18,10 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the latest site with its modification history
+      - name: Check out the latest site
         uses: actions/checkout@v4
         with:
           ref: main
-          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -32,20 +31,20 @@ jobs:
       - name: Test sitemap generation
         run: npm run test:sitemap
 
-      - name: Generate sitemap from actual content changes
+      - name: Generate the plain-text sitemap
         run: npm run build:sitemap
 
       - name: Save updated sitemap
         id: sitemap
         run: |
-          if git diff --quiet -- sitemap.xml sitemap.txt; then
+          if git diff --quiet -- sitemap.txt; then
             echo "Sitemap is already up to date."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml sitemap.txt
-          git commit -m "Update sitemap modification dates"
+          git add sitemap.txt
+          git commit -m "Update sitemap URLs"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"
 
