@@ -38,13 +38,13 @@ jobs:
       - name: Save updated sitemap
         id: sitemap
         run: |
-          if git diff --quiet -- sitemap.xml; then
+          if git diff --quiet -- sitemap.xml sitemap.txt; then
             echo "Sitemap is already up to date."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add sitemap.xml
+          git add sitemap.xml sitemap.txt
           git commit -m "Update sitemap modification dates"
           git push
           echo "changed=true" >> "$GITHUB_OUTPUT"

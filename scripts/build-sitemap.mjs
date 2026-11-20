@@ -31,7 +31,7 @@ function timestamp(value, label, now) {
 }
 
 /** Use content history, not the build time, so unrelated deploys do not bump dates. */
-export function buildSitemap({ root = process.cwd(), includeWorkingTree = false, now = new Date() } = {}) {
+export function buildSitemaps({ root = process.cwd(), includeWorkingTree = false, now = new Date() } = {}) {
   now = new Date(now);
   if (!Number.isFinite(now.getTime())) throw new Error('Invalid current timestamp');
   const git = (...args) => execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim();
@@ -53,9 +53,19 @@ export function buildSitemap({ root = process.cwd(), includeWorkingTree = false,
     if (includeWorkingTree && git('status', '--porcelain=v1', '--untracked-files=all', '--', ...page.dependencies)) {
       lastmod = now.toISOString().replace('.000Z', 'Z');
     }
-    return `  <url>\n    <loc>${page.url}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`;
+    return { url: page.url, lastmod };
   });
-  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries.join('\n')}\n</urlset>\n`;
+  const xmlEntries = entries.map(({ url, lastmod }) =>
+    `  <url>\n    <loc>${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n  </url>`);
+  return {
+    xml: `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${xmlEntries.join('\n')}\n</urlset>\n`,
+    // Google's supported plain-text format: absolute canonical URLs, one per line.
+    text: entries.map(entry => entry.url).join('\n') + '\n',
+  };
+}
+
+export function buildSitemap(options) {
+  return buildSitemaps(options).xml;
 }
 
 if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1])).href) {
@@ -63,18 +73,20 @@ if (process.argv[1] && import.meta.url === pathToFileURL(resolve(process.argv[1]
   if (args.some(arg => arg !== '--include-working-tree')) {
     throw new Error('Usage: node scripts/build-sitemap.mjs [--include-working-tree]');
   }
-  const sitemap = buildSitemap({ includeWorkingTree: args.includes('--include-working-tree') });
-  const output = resolve(process.cwd(), 'sitemap.xml');
-  let previous;
-  try {
-    previous = readFileSync(output, 'utf8');
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
-  }
-  if (sitemap !== previous) {
-    writeFileSync(output, sitemap);
-    console.log('Updated sitemap.xml using content modification dates.');
-  } else {
-    console.log('sitemap.xml is already up to date.');
+  const sitemaps = buildSitemaps({ includeWorkingTree: args.includes('--include-working-tree') });
+  for (const [name, contents] of [['sitemap.xml', sitemaps.xml], ['sitemap.txt', sitemaps.text]]) {
+    const output = resolve(process.cwd(), name);
+    let previous;
+    try {
+      previous = readFileSync(output, 'utf8');
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+    if (contents !== previous) {
+      writeFileSync(output, contents);
+      console.log(`Updated ${name}.`);
+    } else {
+      console.log(`${name} is already up to date.`);
+    }
   }
 }

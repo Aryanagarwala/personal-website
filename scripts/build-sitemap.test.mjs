@@ -4,7 +4,7 @@ import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'nod
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import { buildSitemap } from './build-sitemap.mjs';
+import { buildSitemap, buildSitemaps } from './build-sitemap.mjs';
 
 const now = '2026-11-12T12:00:00Z';
 function fixture(t) {
@@ -84,4 +84,14 @@ test('rejects shallow history', t => {
   const f = fixture(t);
   f.write('.git/shallow', f.git('rev-parse', 'HEAD') + '\n');
   assert.throws(() => f.build(), /complete Git history/);
+});
+
+test('text and XML sitemaps contain exactly the same validated canonical URLs', t => {
+  const f = fixture(t);
+  const { xml, text } = buildSitemaps({ root: f.root, now });
+  assert.equal(text, 'https://aryan.agarwalas.in/\nhttps://aryan.agarwalas.in/music.html\n');
+  const xmlUrls = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => match[1]);
+  assert.deepEqual(text.trim().split('\n'), xmlUrls);
+  f.write('music.html', '<link rel="canonical" href="https://wrong.example/">');
+  assert.throws(() => buildSitemaps({ root: f.root, now }), /exactly one canonical URL/);
 });
