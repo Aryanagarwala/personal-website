@@ -8,31 +8,6 @@
       "artist": "The Strokes"
     },
     {
-      "id": "581797964",
-      "title": "Machu Picchu",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "302987574",
-      "title": "Between Love & Hate",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "601140632",
-      "title": "80's Comedown Machine",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "1109715168",
-      "title": "Weird Fishes / Arpeggi",
-      "artist": "Radiohead"
-    },
-    {
-      "id": "1478664357",
-      "title": "Threat of Joy",
-      "artist": "The Strokes"
-    },
-    {
       "id": "1498121956",
       "title": "Ode To The Mets",
       "artist": "The Strokes"
@@ -53,13 +28,8 @@
       "artist": "The Strokes"
     },
     {
-      "id": "1478664356",
-      "title": "Oblivius",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "302987577",
-      "title": "Under Control",
+      "id": "601140632",
+      "title": "80's Comedown Machine",
       "artist": "The Strokes"
     },
     {
@@ -73,9 +43,24 @@
       "artist": "The Strokes"
     },
     {
-      "id": "1498121718",
-      "title": "Selfless",
+      "id": "269080525",
+      "title": "Someday",
       "artist": "The Strokes"
+    },
+    {
+      "id": "302987573",
+      "title": "You Talk Way Too Much",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "302987577",
+      "title": "Under Control",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "328074588",
+      "title": "Chicago",
+      "artist": "Sufjan Stevens"
     },
     {
       "id": "601140646",
@@ -88,6 +73,16 @@
       "artist": "The Strokes"
     },
     {
+      "id": "601140644",
+      "title": "Chances",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "1109715168",
+      "title": "Weird Fishes / Arpeggi",
+      "artist": "Radiohead"
+    },
+    {
       "id": "302987572",
       "title": "12:51",
       "artist": "The Strokes"
@@ -95,11 +90,6 @@
     {
       "id": "269080567",
       "title": "Alone, Together",
-      "artist": "The Strokes"
-    },
-    {
-      "id": "302987578",
-      "title": "The Way It Is",
       "artist": "The Strokes"
     },
     {
@@ -113,19 +103,29 @@
       "artist": "The Strokes"
     },
     {
-      "id": "269080525",
-      "title": "Someday",
+      "id": "601140645",
+      "title": "Happy Ending",
       "artist": "The Strokes"
     },
     {
-      "id": "302987573",
-      "title": "You Talk Way Too Much",
+      "id": "581797964",
+      "title": "Machu Picchu",
+      "artist": "The Strokes"
+    },
+    {
+      "id": "302987574",
+      "title": "Between Love & Hate",
       "artist": "The Strokes"
     },
     {
       "id": "299740716",
       "title": "Ask Me Anything",
       "artist": "The Strokes"
+    },
+    {
+      "id": "328074597",
+      "title": "The Predatory Wasp of the Palisades Is Out to Get Us!",
+      "artist": "Sufjan Stevens"
     }
   ]
 }
